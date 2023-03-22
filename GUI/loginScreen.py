@@ -1,15 +1,34 @@
 from tkinter import *
 from functools import partial
+import os
 from signUpScreen import createScreen as signUpcreateScreen
 
+def noUser():
+    Screen = Tk()
+    Screen.geometry("200x50")
+    Screen.title("Errors")
+    Label(Screen, text = "Wrong username or password!!!").place(x = 10, y = 10)
+
 def login(username, password):
-    return username, password
+    un = username.get() 
+    print(un)
+    pw = password.get()
+    try:
+        path = os.path.realpath('DatingAppProject/Data/Users/' + str(un)) 
+        with open(path + "/Password.txt", "r+") as f:
+            print("done")
+            true_pw = f.readline()
+            print(true_pw)
+            if pw != true_pw:
+                noUser()
+    except IOError:
+        noUser()
 
 def signup(Screen):
     Screen.destroy()
     return signUpcreateScreen(Screen)
 
-def createScreen(Screen):
+def createScreen():
     Screen = Tk()
     Screen.geometry("400x250")
     Screen.title("Login")
@@ -25,3 +44,6 @@ def createScreen(Screen):
     createAccButton = Button(Screen, text = "Sign up here", command = Signup).place(x = 130, y = 160)
     
     Screen.mainloop()  
+
+
+createScreen()
