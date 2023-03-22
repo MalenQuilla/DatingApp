@@ -3,10 +3,10 @@ import os
 
 def import2File(thisUser, username):
     path = os.path.realpath('DatingAppProject/Data/Users/' + username)
-    try:
-        os.mkdir(path)
-    except IOError:
-        pass
+    #try:
+    os.mkdir(path)
+    #except IOError:
+        #pass
     with open(path + '/Info.txt', "w+") as f1:
         f1.write("\n".join(f"{tup}" for tup in (thisUser.getInfo())))
     with open(path + '/Basics.txt', "w+") as f2:
