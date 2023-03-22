@@ -1,4 +1,4 @@
-    class User:
+class User:
     def __init__(self): #indispensable
         self.__name = ""
         self.__age = 0
@@ -64,15 +64,11 @@
             self.__pets = pets
         def getUserInterests(self):
             return self.__sports, self.__creativity, self.__going_out, self.__staying_in, self.__film_tv, self.__reading, self.__music, self.__food, self.__traveling, self.__pets
-    def setUserName(self, name):
+    def setUserInfo(self, name, age, gender, location, bio):
         self.__name = str(name)
-    def setAge(self, age):
         self.__age = int(age)
-    def setGender(self, gender):
         self.__gender = str(gender)
-    def setLocation(self, location):
         self.__location = str(location)
-    def setBio(self, bio):
         if bio != "None":
             self.__bio = str(bio)
     def setUserBasics(self, height, weigth, zodiac, education, workout, smoke, drink):
