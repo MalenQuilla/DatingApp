@@ -1,4 +1,5 @@
 from tkinter import *
+from PIL import Image, ImageTk
 from functools import partial
 import os
 from signUpScreen import createScreen as signUpcreateScreen
@@ -6,6 +7,7 @@ from signUpScreen import createScreen as signUpcreateScreen
 def noUser():
     Screen = Tk()
     Screen.geometry("200x50")
+    Screen.resizable(width=False, height=False)
     Screen.title("Errors")
     Label(Screen, text = "Wrong username or password!!!").place(x = 10, y = 10)
 
@@ -30,18 +32,21 @@ def signup(Screen):
 
 def createScreen():
     Screen = Tk()
-    Screen.geometry("400x250")
+    Screen.geometry("900x500")
+    Screen.resizable(width=False, height=False)
+    bg = PhotoImage(file = "GUI/Login/login_screen.png")
+    Confirm = PhotoImage(file = "GUI/Login/Confirm_button.png")
+    Signup = PhotoImage(file = "GUI/Login/Sign_up.png")
+    Label(Screen, image = bg).place(x=0, y=0, relwidth =1, relheight = 1)
     Screen.title("Login")
     username = StringVar()
     password = StringVar()
-    l1 = Label(Screen, text = "Username").place(x = 70, y = 90)
-    l2 = Label(Screen, text = "Password").place(x = 70, y = 130)
-    e1 = Entry(Screen, textvariable = username).place(x = 130, y = 90)
-    e2 = Entry(Screen, textvariable = password, show = "*").place(x = 130, y = 130)
+    Entry(Screen, textvariable = username, width = 30, borderwidth = 0, highlightthickness = 0).place(x = 160, y = 210)
+    Entry(Screen, textvariable = password, show = "*", width = 30, borderwidth = 0, highlightthickness = 0).place(x = 160, y = 265)
     Login = partial(login, username, password)
-    loginButton = Button(Screen, text = "Login", command = Login).place(x = 260, y = 123)
-    Signup = partial(signup, Screen)
-    createAccButton = Button(Screen, text = "Sign up here", command = Signup).place(x = 130, y = 160)
+    loginButton = Button(Screen, image = Confirm, command = Login, borderwidth = 0, highlightthickness = 0).place(x = 125, y = 310)
+    Sign_up = partial(signup, Screen)
+    createAccButton = Button(Screen, image = Signup, command = Sign_up, borderwidth = 0, highlightthickness = 0).place(x = 125, y = 370)
     
     Screen.mainloop()  
 
