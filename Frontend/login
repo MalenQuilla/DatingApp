@@ -1,0 +1,79 @@
+import tkinter as tk
+
+root = tk.Tk()  # Tạo cửa sổ chính
+root.geometry('850x500')
+root.resizable(width=False, height=False)
+
+
+background = tk.PhotoImage(file="img/Frame 20.png")                 # Export Background image from available photo library
+sign_up = tk.PhotoImage(file="img/Sign up.png")                     # Export Sign image from available photo library
+confirm = tk.PhotoImage(file="img/Confirm.png")                     # Export Confirm image from available photo library
+forgot_password = tk.PhotoImage(file="img/Forgot password_.png")    # Export Forgot Password image from available photo library
+
+
+#------------------------------------------------------
+label_background = tk.Label(root, image=background)
+label_background.pack()
+
+
+
+#------------------------------------------------------
+def InputUserName(event):
+    if input_user_name.get() == "User Name":
+        input_user_name.delete(0, "end") # Remove blurry text
+        input_user_name.configure(fg="#000000")
+def InputUserNameFocusOut(event):
+    if not input_user_name.get():
+        input_user_name.configure(fg="#A9A9A9") # Restore the color of the input box's watermark
+        input_user_name.insert(0, "User Name")
+        
+input_user_name = tk.Entry(label_background, width=25, fg="#A9A9A9", font=("Arial", 14))
+input_user_name.insert(0, "User Name") # Insert opaque text into input_user_name
+input_user_name.bind("<FocusIn>", InputUserName) # Attach event on click on input_user_name
+input_user_name.bind("<FocusOut>", InputUserNameFocusOut) # Hook event on hover out of input_user_name
+input_user_name.place(x=70, y=175)
+input_user_name.configure(borderwidth=0, highlightthickness=0)
+
+
+#------------------------------------------------------
+def InputPassword(event):
+    if input_password.get() == "Password":
+        input_password.delete(0, "end") # Remove blurry text
+        input_password.configure(fg="#000000")
+def InputPasswordFocusOut(event):
+    if not input_password.get():
+        input_password.configure(fg="#A9A9A9") # Restore the color of the input box's watermark
+        input_password.insert(0, "Password")
+input_password = tk.Entry(label_background, width=25, fg="#A9A9A9", font=("Arial", 14))
+input_password.insert(0, "Password") # Insert opaque text into input_password
+input_password.bind("<FocusIn>", InputPassword) # Attach event on click on input_password
+input_password.bind("<FocusOut>", InputPasswordFocusOut) # Hook event on hover out of input_password
+input_password.place(x=70, y=260)
+input_password.configure(borderwidth=0, highlightthickness=0)
+
+#------------------------------------------------------
+
+def sign_up_click():
+    # Registration processing
+    pass
+sign_up_button = tk.Button(label_background, image=sign_up, borderwidth=0, highlightthickness=0, command=sign_up_click)
+sign_up_button.place(x=265, y=460)
+sign_up_button.configure(highlightthickness=0)
+
+
+def confirm_click():
+    # Registration processing
+    pass
+confirm_button = tk.Button(label_background, image=confirm, borderwidth=0, highlightthickness=0, command=confirm_click)
+confirm_button.place(x=205, y=329)
+confirm_button.configure(highlightthickness=0)
+
+
+def forgot_password_click():
+    # Registration processing
+    pass
+forgot_password_button = tk.Button(label_background, image=forgot_password, bg = "#F4E0EA",  borderwidth=0, highlightthickness=0, command=forgot_password_click,activebackground="#F4E0EA")
+forgot_password_button.place(x=63, y=345)
+forgot_password_button.configure(highlightthickness=0)
+
+root.mainloop()
