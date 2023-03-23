@@ -12,7 +12,7 @@ Status TEXT DEFAULT NULL
 );
 
 CREATE TABLE User_account (
-Username TEXT DEFAULT NULL,
+Account_username TEXT DEFAULT NULL,
 Account_password TEXT DEFAULT NULL,
 Status TEXT DEFAULT NULL
 );
@@ -45,7 +45,7 @@ Status TEXT DEFAULT NULL
 DELIMITER $$
 CREATE PROCEDURE New_User
 (IN User_name VARCHAR(100), IN User_age INT, IN User_gender VARCHAR(100), IN User_location VARCHAR(100),
-IN User_bio VARCHAR(100), IN User_username VARCHAR(100), IN User_account_password VARCHAR(100),
+IN User_bio VARCHAR(100), IN User_account_username VARCHAR(100), IN User_account_password VARCHAR(100),
 IN User_basics_height VARCHAR(100), IN User_basics_weight VARCHAR(100), IN User_basics_zodiac VARCHAR(100),
 IN User_basics_education VARCHAR(100), IN User_basics_workout VARCHAR(100), IN User_basics_smoke VARCHAR(100),
 IN User_basics_drink VARCHAR(100), IN User_interests_sports VARCHAR(100), IN User_interests_creativity VARCHAR(100),
@@ -55,8 +55,8 @@ IN User_interests_travelling VARCHAR(100), IN User_interests_pets VARCHAR(100))
 BEGIN
 INSERT INTO User_information (User_name, User_age, User_gender, User_location, User_bio)
 VALUES (User_name, User_age, User_gender, User_location, User_bio);
-INSERT INTO User_account (User_username, User_account_password)
-VALUES (User_Username, User_Account_password);
+INSERT INTO User_account (User_account_username, User_account_password)
+VALUES (User_account_username, User_account_password);
 INSERT INTO User_basics (User_basics_height, User_basics_weight, User_basics_zodiac, User_basics_education,
 User_basics_workout, User_basics_smoke, User_basics_drink)
 VALUES (User_basics_height, User_basics_weight, User_basics_zodiac, User_basics_education,
@@ -68,3 +68,7 @@ VALUES (User_interests_sports, User_interests_creativity, User_interests_goingou
 User_interests_stayingin, User_interests_film_tv, User_interests_reading, User_interests_music, User_interests_food,
 User_interests_travelling, User_interests_pets);
 END $$
+
+Call New_user ('Tung', '20', 'Male', 'Hanoi', 'thisisbio', 'anhtung207', 'pass123', '1m77', '62kg', 'Cancer', 'College',
+ 'Gym', 'Sometimes', 'Coffee', 'Basketball', 'Drawing', 'Usually', 'Sometimes', 'Action', 'Manga', 'RnB', 'Pho', 'Beach', 'Dogs & Cats');
+ 
