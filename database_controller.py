@@ -40,3 +40,56 @@ def show_account():
         cursor.close()
         conn.close()
         
+def show_info():
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM User_Information")
+        rows = cursor.fetchall()
+ 
+        print('Total Row(s):', cursor.rowcount)
+        return(rows)
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+def show_basics():
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM User_basics")
+        rows = cursor.fetchall()
+ 
+        print('Total Row(s):', cursor.rowcount)
+        return(rows)
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+def show_interests():
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM User_interests")
+        rows = cursor.fetchall()
+ 
+        print('Total Row(s):', cursor.rowcount)
+        return(rows)
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
