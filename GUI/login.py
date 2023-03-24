@@ -67,7 +67,7 @@ def login_screen():
     def InputPassword(event):
         if input_password.get() == "Password":
             input_password.delete(0, "end") # Remove blurry text
-            input_password.configure(fg="#000000")
+            input_password.configure(fg="#000000", show = "*")
     def InputPasswordFocusOut(event):
         if not input_password.get():
             input_password.configure(fg="#A9A9A9") # Restore the color of the input box's watermark
