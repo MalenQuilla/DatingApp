@@ -11,12 +11,10 @@ def noUser():
 
 def login(username, password):
     un = username.get() 
-    print(un)
     pw = password.get()
     try:
-        path = os.path.realpath('DatingAppProject/Data/Users/' + str(un)) 
+        path = str(os.access('DatingAppProject/Data/Users/', os.F_OK))
         with open(path + "/Password.txt", "r+") as f:
-            print("done")
             true_pw = f.readline()
             print(true_pw)
             if pw != true_pw:
