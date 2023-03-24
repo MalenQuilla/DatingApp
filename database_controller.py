@@ -30,8 +30,7 @@ def show_account():
         rows = cursor.fetchall()
  
         print('Total Row(s):', cursor.rowcount)
-        for row in rows:
-            print(row)
+        return(rows)
  
     except Error as e:
         print(e)
@@ -41,4 +40,3 @@ def show_account():
         cursor.close()
         conn.close()
         
-show_account()

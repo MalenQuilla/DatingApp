@@ -1,2 +1,1 @@
-import GUI.loginScreen
-import GUI.signUpScreen
+import GUI.login

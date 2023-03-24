@@ -1,13 +1,16 @@
 import tkinter as tk
 from functools import partial
+from database_controller import show_account
 
 def confirm_click(username, password, root):
     un = username.get()
     pw = password.get()
-    if un != "tungdv":
-        confirm_error(root)
-    print(un)
-    print(pw)
+    accounts = show_account()
+    for account in accounts:
+        if un != account[0] or pw != account[1]:
+            confirm_error(root)
+        else:
+            print("login success")
     
 def confirm_error(root):
     error = tk.PhotoImage(file = "GUI/login_img/Error_message.png")
@@ -96,4 +99,3 @@ def login_screen():
 
     root.mainloop()
     
-login_screen()
