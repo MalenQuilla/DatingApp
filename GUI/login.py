@@ -90,7 +90,7 @@ def login_screen():
     confirm_button.place(x=230, y=330)
     confirm_button.configure(highlightthickness=0)
 
-    forgot_password_button = tk.Button(label_background, image=forgot_password, bg = "#F4E0EA",  borderwidth=0, highlightthickness=0, command = forgot_password_click,activebackground="#F4E0EA")
+    forgot_password_button = tk.Button(label_background, image=forgot_password, bg = "#F4E0EA",  borderwidth=0, highlightthickness=0, command = forgot_password_click, activebackground="#F4E0EA")
     forgot_password_button.place(x=89, y=348)
     forgot_password_button.configure(highlightthickness=0)
 

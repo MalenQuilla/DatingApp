@@ -1,15 +1,14 @@
 from mysql.connector import MySQLConnection, Error
  
 def connect():
-    """ Kết nối MySQL bằng module MySQLConnection """
+    """ Connect MySql """
     db_config = {
         'host': 'localhost',
-        'database': 'Data/Users/DatingAppDatabase',
+        'database': 'DatingApp',
         'user': 'root',
-        'password': ''
+        'password': 'pass123'
     }
  
-    # Biến lưu trữ kết nối
     conn = None
  
     try:
@@ -22,7 +21,24 @@ def connect():
         print(error)
  
     return conn
+
+def show_account():
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM User_account")
+        rows = cursor.fetchall()
  
-# Test thử
-conn = connect()
-print(conn)
+        print('Total Row(s):', cursor.rowcount)
+        for row in rows:
+            print(row)
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+show_account()

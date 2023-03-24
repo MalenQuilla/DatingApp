@@ -7,14 +7,12 @@ User_name TEXT DEFAULT NULL,
 User_age INT DEFAULT NULL,
 User_gender TEXT DEFAULT NULL,
 User_location TEXT DEFAULT NULL,
-User_bio TEXT DEFAULT NULL,
-Status TEXT DEFAULT NULL
+User_bio TEXT DEFAULT NULL
 );
 
 CREATE TABLE User_account (
 Account_username TEXT DEFAULT NULL,
-Account_password TEXT DEFAULT NULL,
-Status TEXT DEFAULT NULL
+Account_password TEXT DEFAULT NULL
 );
 
 CREATE TABLE User_basics (
@@ -24,8 +22,7 @@ Basics_zodiac TEXT DEFAULT NULL,
 Basics_education TEXT DEFAULT NULL,
 Basics_workout TEXT DEFAULT NULL,
 Basics_smoke TEXT DEFAULT NULL,
-Basics_drink TEXT DEFAULT NULL,
-Status TEXT DEFAULT NULL
+Basics_drink TEXT DEFAULT NULL
 );
 
 CREATE TABLE User_interests (
@@ -38,8 +35,7 @@ Interests_reading TEXT DEFAULT NULL,
 Interests_music TEXT DEFAULT NULL,
 Interests_food TEXT DEFAULT NULL,
 Interests_travelling TEXT DEFAULT NULL,
-Interests_pet TEXT DEFAULT NULL,
-Status TEXT DEFAULT NULL
+Interests_pet TEXT DEFAULT NULL
 );
 
 DELIMITER $$
@@ -71,4 +67,8 @@ END $$
 
 Call New_user ('Tung', '20', 'Male', 'Hanoi', 'thisisbio', 'anhtung207', 'pass123', '1m77', '62kg', 'Cancer', 'College',
  'Gym', 'Sometimes', 'Coffee', 'Basketball', 'Drawing', 'Usually', 'Sometimes', 'Action', 'Manga', 'RnB', 'Pho', 'Beach', 'Dogs & Cats');
- 
+
+ SELECT * FROM User_information;
+ SELECT * FROM User_account;
+ SELECT * FROM User_basics;
+ SELECT * FROM User_interests;
