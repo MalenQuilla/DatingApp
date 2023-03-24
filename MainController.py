@@ -1,4 +1,3 @@
-import GUI
-from GUI.login import login_screen
+from GUI import *
 
-login_screen()
+login.login_screen()

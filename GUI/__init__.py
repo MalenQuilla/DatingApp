@@ -1,1 +1,1 @@
-import GUI.login
+from GUI import login
