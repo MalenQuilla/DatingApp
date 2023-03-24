@@ -1,6 +1,7 @@
 import tkinter as tk
 from functools import partial
 from database_controller import show_account
+from GUI import sign_up
 
 def confirm_click(username, password, root):
     un = username.get()
@@ -17,9 +18,9 @@ def confirm_error(root):
     Error = tk.Label(root, image = error, borderwidth = 0, highlightthickness = 0).place(x = 80, y = 140)
     Error.image = error
     
-def sign_up_click():
-    # Registration processing
-    pass
+def sign_up_click(root):
+    root.destroy()
+    sign_up.sign_up_screen()
 
 def forgot_password_click():
     # Registration processing
@@ -72,6 +73,7 @@ def login_screen():
         if not input_password.get():
             input_password.configure(fg="#A9A9A9") # Restore the color of the input box's watermark
             input_password.insert(0, "Password")
+            input_password.configure(show="")
 
     password = tk.StringVar()
 
@@ -83,8 +85,9 @@ def login_screen():
     input_password.configure(borderwidth=0, highlightthickness=0)
 
     #------------------------------------------------------
-
-    sign_up_button = tk.Button(label_background, image=sign_up, borderwidth=0, highlightthickness=0, command = sign_up_click)
+    signup = partial(sign_up_click, root)
+    
+    sign_up_button = tk.Button(label_background, image=sign_up, borderwidth=0, highlightthickness=0, command = signup)
     sign_up_button.place(x=291, y=462)
     sign_up_button.configure(highlightthickness=0)
 
