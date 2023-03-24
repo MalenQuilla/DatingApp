@@ -14,7 +14,7 @@ def confirm_click(username, password, root):
     
 def confirm_error(root):
     error = tk.PhotoImage(file = "GUI/login_img/Error_message.png")
-    Error = tk.Label(root, image = error, borderwidth = 0, highlightthickness = 0).place(x = 135, y = 140)
+    Error = tk.Label(root, image = error, borderwidth = 0, highlightthickness = 0).place(x = 80, y = 140)
     Error.image = error
     
 def sign_up_click():
