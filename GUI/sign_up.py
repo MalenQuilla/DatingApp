@@ -5,6 +5,25 @@ def continue_click(username, password, confirm_password, root):
     un = username.get()
     pw = password.get()
     cpw = confirm_password.get()
+    if un == pw:
+        Error1(root)
+    elif pw != cpw:
+        Error2(root)
+    else:
+        print("sign up successful")
+
+def Error1(root):   
+    error = tk.PhotoImage(file = "GUI/sign_up_img/cannot_match.png")
+    Error = tk.Label(root, image = error, borderwidth=0, highlightthickness=0).place(x = 273, y = 253)      
+    Error.image = error
+    
+def Error2(root):  
+    password_unmatch = tk.PhotoImage(file="GUI/sign_up_img/doesnt_match.png")
+    password_unmatch_Notification = tk.Label(root, image = password_unmatch)
+    password_unmatch_Notification.configure(bg ="#FFF7F3")
+    password_unmatch_Notification.place(x=273, y=325)
+    password_unmatch_Notification.configure(borderwidth=0, highlightthickness=0)
+    password_unmatch_Notification.image = password_unmatch
     
     
 
@@ -14,16 +33,8 @@ def sign_up_screen():
     root.geometry('900x500')
     root.resizable(width=False, height=False)
 
-    # Export Background Sign up image from available photo library
+    #import picture
     background = tk.PhotoImage(file="GUI/sign_up_img/background_sign_up.png")    
-
-    # Export User Name of Password image from available photo library                         
-    special_character = tk.PhotoImage(file="GUI/sign_up_img/user_name_or_password__special_character.png")
-
-    # Export Password not Match from available photo library   
-    incorrect_password = tk.PhotoImage(file="GUI/sign_up_img/doesnt_match.png")
-
-    # Export Continue image from available photo library   
     continue_img = tk.PhotoImage(file="GUI/sign_up_img/continue.png")
 
 
@@ -96,11 +107,6 @@ def sign_up_screen():
 
 
     #---------------------------------------------------------------------------------------------------------------------
-    
-    incorrect_password_Notification = tk.Label(label_background, image=incorrect_password)
-    incorrect_password_Notification.configure(bg ="#FFF7F3")
-    incorrect_password_Notification.place(x=273, y=325)
-    incorrect_password_Notification.configure(borderwidth=0, highlightthickness=0)
 
     con_button = partial(continue_click, user_name_sign_up, password_sign_up, confirm_password_sign_up, root)
     
@@ -109,5 +115,3 @@ def sign_up_screen():
 
 
     root.mainloop()
-
-sign_up_screen()
