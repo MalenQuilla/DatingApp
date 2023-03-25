@@ -8,10 +8,14 @@ def confirm_click(username, password, root):
     pw = password.get()
     accounts = show_account()
     for account in accounts:
-        if un != account[0] or pw != account[1]:
-            confirm_error(root)
-        else:
+        if un == account[0] and pw == account[1]:
             print("login success")
+            isSuccess = True
+        else:
+            isSuccess = False
+    if isSuccess == False:
+        confirm_error(root)
+            
     
 def confirm_error(root):
     error = tk.PhotoImage(file = "GUI/login_img/Error_message.png")
