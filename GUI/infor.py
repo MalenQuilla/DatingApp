@@ -15,6 +15,7 @@ def continue_click(input_name, input_age, input_location, input_bio, gender, roo
     gen = gender[0]
     insert_info(na, ag, gen, loca, bi)
     print("set info success")
+    root.destroy()
 
 
 def Infor_screen():
