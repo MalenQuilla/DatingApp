@@ -120,4 +120,66 @@ def insert_account(Account_username, Account_password):
         # close connection
         cursor.close()
         conn.close()
+
+def insert_info(User_name, User_age, User_gender, User_location, User_bio):
+    query = "INSERT INTO User_information(User_name, User_age, User_gender, User_location, User_bio) " \
+            "VALUES(%s,%d,%s,%s,%s)"
+    args = (User_name, User_age, User_gender, User_location, User_bio)
+ 
+    try:
+ 
+        conn = connect()
+ 
+        cursor = conn.cursor()
+        cursor.execute(query, args)
+  
+        conn.commit()
+    except Error as error:
+        print(error)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
         
+def insert_baiscs(Basics_height, Basics_weight, Basics_zodiac, Basics_education, Basics_workout, Basics_smoke, Basics_drink):
+    query = "INSERT INTO User_basics(Basics_height, Basics_weight, Basics_zodiac, Basics_education, Basics_workout, Basics_smoke, Basics_drink) " \
+            "VALUES(%s,%s,%s,%s,%s,%s,%s)"
+    args = (Basics_height, Basics_weight, Basics_zodiac, Basics_education, Basics_workout, Basics_smoke, Basics_drink)
+ 
+    try:
+ 
+        conn = connect()
+ 
+        cursor = conn.cursor()
+        cursor.execute(query, args)
+  
+        conn.commit()
+    except Error as error:
+        print(error)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+def insert_interests(Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet):
+    query = "INSERT INTO User_basics(Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet) " \
+            "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    args = (Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet)
+ 
+    try:
+ 
+        conn = connect()
+ 
+        cursor = conn.cursor()
+        cursor.execute(query, args)
+  
+        conn.commit()
+    except Error as error:
+        print(error)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()

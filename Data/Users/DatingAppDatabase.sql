@@ -17,7 +17,7 @@ Account_password TEXT DEFAULT NULL
 
 CREATE TABLE User_basics (
 Basics_height TEXT DEFAULT NULL,
-Basics_weigth TEXT DEFAULT NULL,
+Basics_weight TEXT DEFAULT NULL,
 Basics_zodiac TEXT DEFAULT NULL,
 Basics_education TEXT DEFAULT NULL,
 Basics_workout TEXT DEFAULT NULL,
@@ -42,7 +42,7 @@ DELIMITER $$
 CREATE PROCEDURE New_User
 (IN User_name VARCHAR(100), IN User_age INT, IN User_gender VARCHAR(100), IN User_location VARCHAR(100),
 IN User_bio VARCHAR(100), IN Account_username VARCHAR(100), IN Account_password VARCHAR(100),
-IN Basics_height VARCHAR(100), IN Basics_weigth VARCHAR(100), IN Basics_zodiac VARCHAR(100),
+IN Basics_height VARCHAR(100), IN Basics_weight VARCHAR(100), IN Basics_zodiac VARCHAR(100),
 IN Basics_education VARCHAR(100), IN Basics_workout VARCHAR(100), IN Basics_smoke VARCHAR(100),
 IN Basics_drink VARCHAR(100), IN Interests_sports VARCHAR(100), IN Interests_creativity VARCHAR(100),
 IN Interests_goingout VARCHAR(100), IN Interests_stayingin VARCHAR(100), IN Interests_film_tv VARCHAR(100),
@@ -53,9 +53,9 @@ INSERT INTO User_information (User_name, User_age, User_gender, User_location, U
 VALUES (User_name, User_age, User_gender, User_location, User_bio);
 INSERT INTO User_account (Account_username, Account_password)
 VALUES (Account_username, Account_password);
-INSERT INTO User_basics (Basics_height, Basics_weigth, Basics_zodiac, Basics_education,
+INSERT INTO User_basics (Basics_height, Basics_weight, Basics_zodiac, Basics_education,
 Basics_workout, Basics_smoke, Basics_drink)
-VALUES (Basics_height, Basics_weigth, Basics_zodiac, Basics_education,
+VALUES (Basics_height, Basics_weight, Basics_zodiac, Basics_education,
 Basics_workout, Basics_smoke, Basics_drink);
 INSERT INTO User_interests (Interests_sports, Interests_creativity, Interests_goingout, 
 Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food,
