@@ -1,6 +1,7 @@
 import tkinter as tk
 from functools import partial
 from database_controller import show_account, insert_account
+from GUI import infor
 
 def continue_click(username, password, confirm_password, root):
     un = username.get()
@@ -15,8 +16,10 @@ def continue_click(username, password, confirm_password, root):
     elif pw != cpw:
         Error3(root)
     else:
-        print("sign up successful")
         insert_account(un, pw)
+        print("set account success")
+        root.destroy()
+        infor.Infor_screen()
         
 def Error1(root):
     error = tk.PhotoImage(file = "GUI/sign_up_img/username_already_exist.png")

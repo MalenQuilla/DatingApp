@@ -123,7 +123,7 @@ def insert_account(Account_username, Account_password):
 
 def insert_info(User_name, User_age, User_gender, User_location, User_bio):
     query = "INSERT INTO User_information(User_name, User_age, User_gender, User_location, User_bio) " \
-            "VALUES(%s,%d,%s,%s,%s)"
+            "VALUES(%s,%s,%s,%s,%s)"
     args = (User_name, User_age, User_gender, User_location, User_bio)
  
     try:

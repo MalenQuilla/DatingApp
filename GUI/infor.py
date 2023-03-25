@@ -2,13 +2,19 @@ import tkinter as tk
 import textwrap
 from functools import partial
 from tkinter import *
+from database_controller import insert_info
 
 
-def continue_click(input_name, input_age, input_location, input_bio, root):
+def continue_click(input_name, input_age, input_location, input_bio, gender, root):
     na = input_name.get()
-    ag = input_age.get()
+    ag = int(input_age.get())
     loca = input_location.get()
     bi = input_bio.get()
+    if bi == "Tell something in your Bio..." or bi == '':
+        bi = "Looking for short/long-term dating and new friends."
+    gen = gender[0]
+    insert_info(na, ag, gen, loca, bi)
+    print("set info success")
 
 
 def Infor_screen():
@@ -17,13 +23,13 @@ def Infor_screen():
     root.geometry('900x500')
     root.resizable(width=False, height=False)
 
-    background_img = tk.PhotoImage(file = "DatingAppProject/GUI/profile_information_img/new_bg.png")
-    continue_img = tk.PhotoImage(file="DatingAppProject/GUI/profile_information_img/continue.png")
-    male_img = tk.PhotoImage(file="DatingAppProject/GUI/profile_information_img/male.png")
-    female_img = tk.PhotoImage(file="DatingAppProject/GUI/profile_information_img/female.png")
-    les_img = tk.PhotoImage(file="DatingAppProject/GUI/profile_information_img/les.png")
-    gay_img = tk.PhotoImage(file="DatingAppProject/GUI/profile_information_img/gay.png")
-    bi_img = tk.PhotoImage(file="DatingAppProject/GUI/profile_information_img/bi.png")
+    background_img = tk.PhotoImage(file = "GUI/profile_information_img/new_bg.png")
+    continue_img = tk.PhotoImage(file="GUI/profile_information_img/continue.png")
+    male_img = tk.PhotoImage(file="GUI/profile_information_img/male.png")
+    female_img = tk.PhotoImage(file="GUI/profile_information_img/female.png")
+    les_img = tk.PhotoImage(file="GUI/profile_information_img/les.png")
+    gay_img = tk.PhotoImage(file="GUI/profile_information_img/gay.png")
+    bi_img = tk.PhotoImage(file="GUI/profile_information_img/bi.png")
 
     
 
@@ -31,40 +37,53 @@ def Infor_screen():
     label_background.pack()
     #--------------------------------------------------------------------------------------------------------------------
 
-    button_number = 0
+    gender = ['None']
+    
+    def MALE():
+        gender[0] = "male"
+        Label(root, image=male_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 718, y= 250)
+    def FEMALE():
+        gender[0] = "female"
+        Label(root, image=female_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 721, y= 253)
+    def LES():
+        gender[0] = "les"
+        Label(root, image=les_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 722, y= 253)
+    def GAY():
+        gender[0] = "gay"
+        Label(root, image=gay_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 722, y= 253)
+    def BI():
+        gender[0] = "bi-sexual"
+        Label(root, image=bi_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 718, y= 253)
+    
 
+    male_button = tk.Button(label_background, image=male_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command = MALE)
+    male_button.place(x = 480, y= 177)
 
-    male_button = tk.Button(label_background, image=male_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-    male_button.place(x = 480, y= 180)
-
-    female_button = tk.Button(label_background, image=female_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    female_button = tk.Button(label_background, image=female_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= FEMALE)
     female_button.place(x = 600, y= 180)
 
-    les_button = tk.Button(label_background, image=les_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    les_button = tk.Button(label_background, image=les_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= LES)
     les_button.place(x = 720, y= 179)
 
-    gay_button = tk.Button(label_background, image=gay_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    gay_button = tk.Button(label_background, image=gay_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= GAY)
     gay_button.place(x = 485, y= 250)
 
-    bi_button = tk.Button(label_background, image=bi_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    bi_button = tk.Button(label_background, image=bi_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= BI)
     bi_button.place(x = 598, y= 250)
-
-
-
 
 
     #--------------------------------------------------------------------------------------------------------------------
     def Input_Name(event):
-        if  input_name.get() == "Name":
+        if  input_name.get() == "Full Name":
             input_name.delete(0, "end") # Remove blurry text
             input_name.configure(fg="#000000")
     def Input_Name_Focus_Out(event):
         if not input_name.get():
             input_name.configure(fg="#A9A9A9") # Restore the color of the input box's watermark
-            input_name.insert(0, "Name")
+            input_name.insert(0, "Full Name")
     name = tk.StringVar()
     input_name = tk.Entry(label_background, textvariable = name, width=29,bg="#FFFDFC", fg="#A9A9A9", font=("Arial", 14))  
-    input_name.insert(0, "Name") # Insert opaque text into input_name
+    input_name.insert(0, "Full Name") # Insert opaque text into input_name
     input_name.bind("<FocusIn>", Input_Name) # Attach event on click on input_name
     input_name.bind("<FocusOut>", Input_Name_Focus_Out) # Hook event on hover out of input_user_name
     input_name.place(x=73, y=195)
@@ -126,15 +145,9 @@ def Infor_screen():
 
 
 
-    conti_button = partial(continue_click, name, age, location, bio, root)
+    conti_button = partial(continue_click, name, age, location, bio, gender, root)
     
     continue_button = tk.Button(label_background, image=continue_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command = conti_button)
     continue_button.place(x=150, y=395)
 
     root.mainloop()
-
-   
-
-
-if __name__ == '__main__':
-    Infor_screen()
