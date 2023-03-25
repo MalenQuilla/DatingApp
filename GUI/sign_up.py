@@ -24,7 +24,7 @@ def Error2(root):
     password_unmatch_Notification.place(x=273, y=325)
     password_unmatch_Notification.configure(borderwidth=0, highlightthickness=0)
     password_unmatch_Notification.image = password_unmatch
-    
+
     
 
 def sign_up_screen():
