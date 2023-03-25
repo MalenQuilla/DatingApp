@@ -22,6 +22,9 @@ def connect():
  
     return conn
 
+#----------------------------------------------------------------------------------------------------
+
+#get data from db
 def show_account():
     try:
         conn = connect()
@@ -88,6 +91,35 @@ def show_interests():
  
     except Error as e:
         print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+#----------------------------------------------------------------------------------------------------
+#set data to db
+
+def insert_account(Account_username, Account_password):
+    query = "INSERT INTO User_account(Account_username, Account_password) " \
+            "VALUES(%s,%s)"
+    args = (Account_username, Account_password)
+ 
+    try:
+ 
+        conn = connect()
+ 
+        cursor = conn.cursor()
+        cursor.execute(query, args)
+ 
+        if cursor.lastrowid:
+            print('insert ID:', cursor.lastrowid)
+        else:
+            print('Insert failed')
+ 
+        conn.commit()
+    except Error as error:
+        print(error)
  
     finally:
         # close connection
