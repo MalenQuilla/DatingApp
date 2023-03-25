@@ -7,7 +7,7 @@ class User:
         self.__bio = "Looking for short/long-term dating and new friends." # default value
         self.__basics = self.userBasics() #inner class
         self.__interests = self.userInterests() #inner class
-        self.__account = self.userAccount() #inner classz
+        self.__account = self.userAccount() #inner class
     class userAccount: #indispensable
         def __init__(self):
             self.__username = ""
