@@ -1,23 +1,34 @@
 import tkinter as tk
 from functools import partial
+from database_controller import show_account, insert_account
 
 def continue_click(username, password, confirm_password, root):
     un = username.get()
     pw = password.get()
     cpw = confirm_password.get()
+    accounts = show_account()
+    for account in accounts:
+        if account[0] == un or un == "User Name":
+            Error1(root)
     if un == pw:
-        Error1(root)
-    elif pw != cpw:
         Error2(root)
+    elif pw != cpw:
+        Error3(root)
     else:
         print("sign up successful")
+        insert_account(un, pw)
 
-def Error1(root):   
+def Error1(root):
+    error = tk.PhotoImage(file = "GUI/sign_up_img/cannot_match.png")
+    Error = tk.Label(root, image = error, borderwidth=0, highlightthickness=0).place(x = 273, y = 178)      
+    Error.image = error
+
+def Error2(root):   
     error = tk.PhotoImage(file = "GUI/sign_up_img/cannot_match.png")
     Error = tk.Label(root, image = error, borderwidth=0, highlightthickness=0).place(x = 273, y = 253)      
     Error.image = error
     
-def Error2(root):  
+def Error3(root):  
     password_unmatch = tk.PhotoImage(file="GUI/sign_up_img/doesnt_match.png")
     password_unmatch_Notification = tk.Label(root, image = password_unmatch)
     password_unmatch_Notification.configure(bg ="#FFF7F3")

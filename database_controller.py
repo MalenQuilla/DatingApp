@@ -111,12 +111,7 @@ def insert_account(Account_username, Account_password):
  
         cursor = conn.cursor()
         cursor.execute(query, args)
- 
-        if cursor.lastrowid:
-            print('insert ID:', cursor.lastrowid)
-        else:
-            print('Insert failed')
- 
+  
         conn.commit()
     except Error as error:
         print(error)
@@ -125,3 +120,4 @@ def insert_account(Account_username, Account_password):
         # close connection
         cursor.close()
         conn.close()
+        
