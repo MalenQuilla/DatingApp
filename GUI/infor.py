@@ -7,7 +7,7 @@ from database_controller import insert_info
 
 def continue_click(input_name, input_dob, input_location, input_bio, gender, root):
     na = input_name.get()
-    dob = int(input_dob.get())
+    dob = input_dob.get()
     loca = input_location.get()
     bi = input_bio.get()
     if bi == "Tell something in your Bio..." or bi == '':
