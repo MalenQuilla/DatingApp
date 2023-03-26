@@ -147,6 +147,139 @@ def Basic_Infor():
 
 
 
+    #Education NO PUSH
+    hight_school_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/no_push/high_school.png")
+    hight_school = tk.Button(label_background, image=hight_school_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    hight_school.place(x=519,y=261)
+
+    professional_college_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/no_push/professional_college.png")
+    professional_college = tk.Button(label_background, image=professional_college_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    professional_college.place(x=518,y=260)
+
+    university_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/no_push/university.png")
+    university = tk.Button(label_background, image=university_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    university.place(x=519,y=263)
+
+    master_degree_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/no_push/master_degree.png")
+    master_degree = tk.Button(label_background, image=master_degree_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    master_degree.place(x=518,y=261)
+
+    professor_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/no_push/professor.png")
+    professor = tk.Button(label_background, image=professor_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    professor.place(x=520,y=260)
+
+    vocational_school_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/no_push/vocational_school.png")
+    vocational_school = tk.Button(label_background, image=vocational_school_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    vocational_school.place(x=517,y=260)
+
+    education_skip_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/skip.png")
+    education_skip = tk.Button(label_background, image=education_skip_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    education_skip.place(x=520,y=260)
+
+
+
+
+
+
+
+
+
+    #Education PUSH
+    hight_school_img_push = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/push/high_school_push.png")
+    hight_school_img = tk.Button(label_background, image=hight_school_img_push, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    hight_school_img.place(x=519,y=261)
+
+    professional_college_img_push = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/push/professional_college_push.png")
+    professional_college_img = tk.Button(label_background, image=professional_college_img_push, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    professional_college_img.place(x=518,y=261)
+
+    university_img_push = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/push/university_push.png")
+    university_img = tk.Button(label_background, image=university_img_push, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    university_img.place(x=518,y=261)
+
+    master_degree_img_push = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/push/master_degree_put.png")
+    master_degree_img = tk.Button(label_background, image=master_degree_img_push, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    master_degree_img.place(x=518,y=261)
+
+    professor_img_push = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/push/professor_push.png")
+    professor_img = tk.Button(label_background, image=professor_img_push, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    professor_img.place(x=519,y=261)
+
+    vocational_school_img_push = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Education_img/push/vocational_school_push.png")
+    vocational_school_img = tk.Button(label_background, image=vocational_school_img_push, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    vocational_school_img.place(x=519,y=260)
+
+    education_skip_push_img_push = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/skip_push.png")
+    education_skip_push_img = tk.Button(label_background, image=education_skip_push_img_push, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    education_skip_push_img.place(x=519,y=261)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #Zodiac
+    aries_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/aries.png")
+    aries = tk.Label(label_background, image=aries_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    aries.place(x=861,y=260)
+
+    taurus_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/taurus.png")
+    taurus = tk.Label(label_background, image=taurus_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    taurus.place(x=859,y=260)
+
+    gemini_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/gemini.png")
+    gemini = tk.Label(label_background, image=gemini_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    gemini.place(x=861,y=260)
+
+    cancer_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/cancer.png")
+    cancer = tk.Label(label_background, image=cancer_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    cancer.place(x=859,y=260)
+
+    leo_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/leo.png")
+    leo = tk.Label(label_background, image=leo_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    leo.place(x=861,y=260)
+
+    virgo_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/virgo.png")
+    virgo = tk.Label(label_background, image=virgo_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    virgo.place(x=860,y=260)
+
+    libra_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/libra.png")
+    libra = tk.Label(label_background, image=libra_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    libra.place(x=859,y=260)
+
+    scorpio_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/scorpio.png")
+    scorpio = tk.Label(label_background, image=scorpio_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    scorpio.place(x=861,y=260)
+
+    sagittarius_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/sagittarius.png")
+    sagittarius = tk.Label(label_background, image=sagittarius_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    sagittarius.place(x=861,y=260)
+
+    capricorn_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/capricorn.png")
+    capricorn = tk.Label(label_background, image=capricorn_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    capricorn.place(x=861,y=260)
+
+    aquarius_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/aquarius.png")
+    aquarius = tk.Label(label_background, image=aquarius_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    aquarius.place(x=860,y=260)
+
+    pisces_img = tk.PhotoImage(file="DatingAppProject/GUI/basic_information_img/Zodiac/pisces.png")
+    pisces = tk.Label(label_background, image=pisces_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    pisces.place(x=859,y=260)
+    
+
+
 
 
 
