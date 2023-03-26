@@ -5,15 +5,15 @@ from tkinter import *
 from database_controller import insert_info
 
 
-def continue_click(input_name, input_age, input_location, input_bio, gender, root):
+def continue_click(input_name, input_dob, input_location, input_bio, gender, root):
     na = input_name.get()
-    ag = int(input_age.get())
+    dob = int(input_dob.get())
     loca = input_location.get()
     bi = input_bio.get()
     if bi == "Tell something in your Bio..." or bi == '':
         bi = "Looking for short/long-term dating and new friends."
     gen = gender[0]
-    insert_info(na, ag, gen, loca, bi)
+    insert_info(na, dob, gen, loca, bi)
     print("set info success")
     root.destroy()
 
@@ -91,22 +91,22 @@ def Infor_screen():
     input_name.configure(borderwidth=0, highlightthickness=0)
 
     #--------------------------------------------------------------------------------------------------------------------
-    def Input_Age(event):
-        if  input_age.get() == "Age":
-            input_age.delete(0, "end")
-            input_age.configure(fg="#000000")
-    def Input_Age_Focus_Out(event):
-        if not input_age.get():
-            input_age.configure(fg="#A9A9A9")
-            input_age.insert(0, "Age")
-    age = tk.StringVar()
+    def Input_dob(event):
+        if  input_dob.get() == "DOB (YYYY-MM-DD)":
+            input_dob.delete(0, "end")
+            input_dob.configure(fg="#000000")
+    def Input_dob_Focus_Out(event):
+        if not input_dob.get():
+            input_dob.configure(fg="#A9A9A9")
+            input_dob.insert(0, "DOB (YYYY-MM-DD)")
+    dob = tk.StringVar()
  
-    input_age = tk.Entry(label_background, textvariable=age, width=29, bg="#FFFDFC", fg ="#A9A9A9", font=("Arial, 14"))
-    input_age.insert(0, "Age")
-    input_age.bind("<FocusIn>", Input_Age)
-    input_age.bind("<FocusOut>", Input_Age_Focus_Out)
-    input_age.place(x = 73, y = 268)
-    input_age.configure(borderwidth=0, highlightthickness=0)
+    input_dob = tk.Entry(label_background, textvariable=dob, width=29, bg="#FFFDFC", fg ="#A9A9A9", font=("Arial, 14"))
+    input_dob.insert(0, "DOB (YYYY-MM-DD)")
+    input_dob.bind("<FocusIn>", Input_dob)
+    input_dob.bind("<FocusOut>", Input_dob_Focus_Out)
+    input_dob.place(x = 73, y = 268)
+    input_dob.configure(borderwidth=0, highlightthickness=0)
     #--------------------------------------------------------------------------------------------------------------------
     def Input_Location(event):
         if input_location.get() == "Location":
@@ -146,7 +146,7 @@ def Infor_screen():
 
 
 
-    conti_button = partial(continue_click, name, age, location, bio, gender, root)
+    conti_button = partial(continue_click, name, dob, location, bio, gender, root)
     
     continue_button = tk.Button(label_background, image=continue_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command = conti_button)
     continue_button.place(x=150, y=395)

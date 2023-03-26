@@ -121,10 +121,10 @@ def insert_account(Account_username, Account_password):
         cursor.close()
         conn.close()
 
-def insert_info(User_name, User_age, User_gender, User_location, User_bio):
-    query = "INSERT INTO User_information(User_name, User_age, User_gender, User_location, User_bio) " \
+def insert_info(User_name, User_dob, User_gender, User_location, User_bio):
+    query = "INSERT INTO User_information(User_name, User_dob, User_gender, User_location, User_bio) " \
             "VALUES(%s,%s,%s,%s,%s)"
-    args = (User_name, User_age, User_gender, User_location, User_bio)
+    args = (User_name, User_dob, User_gender, User_location, User_bio)
  
     try:
  
