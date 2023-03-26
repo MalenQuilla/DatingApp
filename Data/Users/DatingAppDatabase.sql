@@ -65,7 +65,7 @@ Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Inte
 Interests_travelling, Interests_pet);
 END $$
 
-CALL New_user ('Tung', '2003-07-20', 'Male', 'Hanoi', 'thisisbio', 'anhtung207', 'pass123', '1m77', '62kg', 'Cancer', 'College',
+CALL New_user ('Nguyen Duy Anh Tung', '2003-07-20', 'Male', 'Hanoi', 'thisisbio', 'anhtung207', 'pass123', '1m77', '62kg', 'Cancer', 'College',
  'Gym', 'Sometimes', 'Coffee', 'Basketball', 'Drawing', 'Usually', 'Sometimes', 'Action', 'Manga', 'RnB', 'Pho', 'Beach', 'Dogs & Cats');
 
  SELECT * FROM User_information;
