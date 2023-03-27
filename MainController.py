@@ -1,3 +1,5 @@
 from GUI import *
 
-login.login_screen()
+#login.login_screen()
+basic_information.Basic_Infor()
+
