@@ -3,7 +3,6 @@ import textwrap
 from functools import partial
 from tkinter import *
 from database_controller import show_info, insert_baiscs
-import goto
 
 def continue_click(input_height, input_weight, zodiac, workout, smoke, drink, education, root):
     he = input_height.get()
@@ -12,7 +11,8 @@ def continue_click(input_height, input_weight, zodiac, workout, smoke, drink, ed
     smo = smoke[0]
     dri = drink[0]
     edu = education[0]
-    print(he, we, zodiac, wo, smo, dri, edu)
+    print("set up basics success")
+    insert_baiscs(he, we, zodiac, edu, wo, smo, dri)
     
 
 
