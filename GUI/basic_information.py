@@ -3,7 +3,7 @@ import textwrap
 from functools import partial
 from tkinter import *
 from database_controller import show_info, insert_baiscs
-import goto
+
 
 def continue_click(input_height, input_weight, zodiac, workout, smoke, drink, education, root):
     he = input_height.get()
