@@ -11,12 +11,13 @@ def Interest_Screen():
 
     root.geometry('1921x720')
     # root.resizable(width=False, height=False)
-    background = tk.PhotoImage(file="DatingAppProject/GUI/interest_img/bg_new.png")
+    background = tk.PhotoImage(file="DatingAppProject/GUI/interest_img/background.png")
 
     continue_img = tk.PhotoImage(file="DatingAppProject/GUI/interest_img/continue.png")
 
     label_background = tk.Label(root, image = background)
     label_background.pack()
+
     #----------------------------------------------------------------------------------------------------------------------------    
     #Interest 
 
