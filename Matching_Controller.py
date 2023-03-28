@@ -17,13 +17,14 @@ class Match:
         }
         return new_dict
     def checkForMatch(self):
-        new_dict = self.swapInDict(self.__like)
+        new_dict = self.swapInDict(self.__like)                                                             
         common_likes = dict()
         for key in self.__like:
             if (key in new_dict and self.__like[key] == new_dict[key]):
                 common_likes[key] = self.__like[key]
-        return common_likes
-
+            else:
+                return "No match found"
+        return ()
 
 runcode = Match()
 
@@ -33,6 +34,6 @@ runcode.setInfo("TUng", "14")
 runcode.setInfo("Linh", "15")
 print(runcode.getInfo())
 runcode.like("Thang", "12", "TramAnh", "13")
-runcode.like("TramAnh", "13", "Thang", "12")
+# runcode.like("TramAnh", "13", "Thang", "12")
 runcode.getLike()
 print(runcode.checkForMatch())
