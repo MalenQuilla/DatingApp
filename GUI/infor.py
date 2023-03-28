@@ -3,6 +3,7 @@ import textwrap
 from functools import partial
 from tkinter import *
 from database_controller import insert_info
+from GUI import basic_information
 
 
 def continue_click(input_name, input_dob, input_location, input_bio, gender, root):
@@ -16,6 +17,7 @@ def continue_click(input_name, input_dob, input_location, input_bio, gender, roo
     insert_info(na, dob, gen, loca, bi)
     print("set info success")
     root.destroy()
+    basic_information.Basic_Infor()
 
 
 def Infor_screen():
@@ -24,13 +26,13 @@ def Infor_screen():
     root.geometry('900x500')
     root.resizable(width=False, height=False)
 
-    background_img = tk.PhotoImage(file = "GUI/profile_information_img/new_bg.png")
-    continue_img = tk.PhotoImage(file="GUI/profile_information_img/continue.png")
-    male_img = tk.PhotoImage(file="GUI/profile_information_img/male.png")
-    female_img = tk.PhotoImage(file="GUI/profile_information_img/female.png")
-    les_img = tk.PhotoImage(file="GUI/profile_information_img/les.png")
-    gay_img = tk.PhotoImage(file="GUI/profile_information_img/gay.png")
-    bi_img = tk.PhotoImage(file="GUI/profile_information_img/bi.png")
+    background_img = tk.PhotoImage(file = "GUI/sign_up_img/profile_information_img/new_bg.png")
+    continue_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/continue.png")
+    male_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/male.png")
+    female_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/female.png")
+    les_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/les.png")
+    gay_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/gay.png")
+    bi_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/bi.png")
 
     
 
