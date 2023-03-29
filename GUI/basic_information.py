@@ -11,8 +11,7 @@ def continue_click(input_height, input_weight, zodiac, workout, smoke, drink, ed
     smo = smoke[0]
     dri = drink[0]
     edu = education[0]
-    print("set up basics success")
-    insert_baiscs(he, we, zodiac, edu, wo, smo, dri)
+    print(he, we, zodiac, wo, smo, dri, edu)
     
 
 
