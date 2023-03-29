@@ -26,7 +26,7 @@ def Infor_screen():
     root.geometry('900x500')
     root.resizable(width=False, height=False)
 
-    background_img = tk.PhotoImage(file = "GUI/sign_up_img/profile_information_img/new_bg.png")
+    background_img = tk.PhotoImage(file = "GUI/sign_up_img/profile_information_img/newww_bg.png")
     continue_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/continue.png")
     male_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/male.png")
     female_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/female.png")
