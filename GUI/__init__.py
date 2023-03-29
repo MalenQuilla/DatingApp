@@ -3,3 +3,4 @@ from GUI import sign_up
 from GUI import infor
 from GUI import basic_information
 from GUI import interest
+from GUI import upload_img
