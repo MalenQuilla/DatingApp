@@ -2,9 +2,13 @@ import tkinter as tk
 import textwrap
 from functools import partial
 from tkinter import *
-# from database_controller import show_info, insert_baiscs
+from database_controller import insert_interest
 
-
+def continue_click(interests, root):
+    if len(interests) == 5:
+        insert_interest(interests[0], interests[1], interests[2], interests[3], interests[4])
+        root.destroy()
+        print("set up interests success")
 def Interest_Screen():
     root = tk.Tk()
     root.title("Basics Information")
@@ -45,11 +49,11 @@ def Interest_Screen():
     interests = []
     def addInter(inter):
         interests.append(inter)
-        print(len(interests))
+        #print(len(interests))
     def removeInter(inter):
         if inter in interests:
             interests.remove(inter)
-        print(len(interests))
+        #print(len(interests))
     def isFull():
         return len(interests) != 5
 
@@ -666,10 +670,8 @@ def Interest_Screen():
     
     # continue_clickk = partial(continue_click, height, weight, zodiac, workout, smoke, drink, education, second_frame)
     
-    continue_button = tk.Button(second_frame, image=continue_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    con_click = partial(continue_click, interests, root)
+    
+    continue_button = tk.Button(second_frame, image=continue_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= con_click)
     continue_button.place(x = 539, y = 1750)
     root.mainloop()
-
-if __name__ == "__main__":
-    Interest_Screen()
-

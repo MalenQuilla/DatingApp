@@ -1,0 +1,6 @@
+use DatingApp;
+
+select * from User_information;
+select * from User_account;
+select * from User_basics;
+select * from User_interests;

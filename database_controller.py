@@ -163,10 +163,58 @@ def insert_baiscs(Basics_height, Basics_weight, Basics_zodiac, Basics_education,
         cursor.close()
         conn.close()
         
-def insert_interests(Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet):
+def insert_interest(in1, in2, in3, in4, in5):
+    query = "INSERT INTO User_interests(interest1, interest2, interest3, interest4, interest5) " \
+            "VALUES(%s,%s,%s,%s,%s)"
+    args = (in1, in2, in3, in4, in5)
+ 
+    try:
+ 
+        conn = connect()
+ 
+        cursor = conn.cursor()
+        cursor.execute(query, args)
+  
+        conn.commit()
+    except Error as error:
+        print(error)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+def insert_interests_old(Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet):
     query = "INSERT INTO User_basics(Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet) " \
             "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     args = (Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet)
+ 
+    try:
+ 
+        conn = connect()
+ 
+        cursor = conn.cursor()
+        cursor.execute(query, args)
+  
+        conn.commit()
+    except Error as error:
+        print(error)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+#insert Image
+def convertToBinaryData(filename):
+    # Convert digital data to binary format
+    with open(filename, 'rb') as file:
+        binaryData = file.read()
+    return binaryData
+def insert_image(photo):
+    query = "INSERT INTO Photo(image) " \
+            "VALUES(%s)"
+    args = (convertToBinaryData(photo),)
  
     try:
  

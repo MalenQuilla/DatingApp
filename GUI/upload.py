@@ -12,9 +12,9 @@ def Upload_Screen():
 
 
 
-    background_img = tk.PhotoImage(file="DatingAppProject/GUI/upload_img/background_upload_img.png")
-    continue_img = tk.PhotoImage(file="DatingAppProject/GUI/upload_img/continue_img.png")
-    upload_img = tk.PhotoImage(file="DatingAppProject/GUI/upload_img/upload_button_img.png")
+    background_img = tk.PhotoImage(file="GUI/upload_img/background_upload_img.png")
+    continue_img = tk.PhotoImage(file="GUI/upload_img/continue_img.png")
+    upload_img = tk.PhotoImage(file="GUI/upload_img/upload_button_img.png")
 
     label_background = tk.Label(root, image=background_img)
     label_background.pack()
