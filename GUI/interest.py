@@ -9,6 +9,8 @@ def continue_click(interests, root):
         insert_interest(interests[0], interests[1], interests[2], interests[3], interests[4])
         root.destroy()
         print("set up interests success")
+        
+        
 def Interest_Screen():
     root = tk.Tk()
     root.title("Basics Information")

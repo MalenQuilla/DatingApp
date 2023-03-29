@@ -204,6 +204,7 @@ def insert_interests_old(Interests_sports, Interests_creativity, Interests_going
         # close connection
         cursor.close()
         conn.close()
+      
         
 #insert Image
 def convertToBinaryData(filename):
