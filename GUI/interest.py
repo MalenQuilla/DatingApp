@@ -11,7 +11,7 @@ def Interest_Screen():
 
     root.geometry('1280x800')
     root.resizable(width=False, height=False)
-    background = tk.PhotoImage(file="GUI/sign_up_img/interest_img/background_img.png")
+    background = tk.PhotoImage(file="GUI/sign_up_img/interest_img/background_interests.png")
 
     continue_img = tk.PhotoImage(file="GUI/sign_up_img/interest_img/continue_img.png")
 
@@ -531,11 +531,14 @@ def Interest_Screen():
     comedy_unclick()
     
     def horror_click():
-        horror = tk.Button(second_frame, image=horror_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(horror_unclick))
-        horror.place(x = 954, y = 1254)
+        if isFull():
+            horror = tk.Button(second_frame, image=horror_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(horror_unclick))
+            horror.place(x = 954, y = 1254)
+            addInter("horror")
     def horror_unclick():
         horror = tk.Button(second_frame, image=horror_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(horror_click))
         horror.place(x = 955, y = 1253)
+        removeInter("horror")
     horror_unclick()
     
     #-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -568,87 +571,95 @@ def Interest_Screen():
     # Button no Click of Reading and Pets
 
     def history_click():
-        history = tk.Button(second_frame, image=history_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(history_unclick))
-        history.place(x = 129, y = 1477)
+        if isFull():
+            history = tk.Button(second_frame, image=history_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(history_unclick))
+            history.place(x = 129, y = 1477)
+            addInter("history")
     def history_unclick():
         history = tk.Button(second_frame, image=history_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(history_click))
         history.place(x = 130, y = 1478)
+        removeInter("history")
     history_unclick()
     
     def novel_click():
-        novel = tk.Button(second_frame, image=novel_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(novel_unclick))
-        novel.place(x = 128, y = 1558)
+        if isFull():
+            novel = tk.Button(second_frame, image=novel_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(novel_unclick))
+            novel.place(x = 128, y = 1558)
+            addInter("novel")
     def novel_unclick():
         novel = tk.Button(second_frame, image=novel_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(novel_click))
         novel.place(x = 129, y = 1561)
+        removeInter("novel")
     novel_unclick()
 
     def poetry_click():
-        poetry = tk.Button(second_frame, image=poetry_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(poetry_unclick))
-        poetry.place(x = 353, y = 1476)
+        if isFull():
+            poetry = tk.Button(second_frame, image=poetry_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(poetry_unclick))
+            poetry.place(x = 353, y = 1476)
+            addInter("poetry")
     def poetry_unclick():
         poetry = tk.Button(second_frame, image=poetry_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(poetry_click))
         poetry.place(x = 355, y = 1478)
+        removeInter("poetry")
     poetry_unclick()
 
     def pschology_click():
-        pschology = tk.Button(second_frame, image=pschology_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(pschology_unclick))
-        pschology.place(x = 349, y = 1557)
+        if isFull():
+            pschology = tk.Button(second_frame, image=pschology_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(pschology_unclick))
+            pschology.place(x = 349, y = 1557)
+            addInter("psychology")
     def pschology_unclick():
         pschology = tk.Button(second_frame, image=pschology_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(pschology_click))
         pschology.place(x = 354, y = 1561)
+        removeInter("psychology")
     pschology_unclick()
 
 
 
     # Button no Click of Reading and Pets
     def dog_click():
-        dog = tk.Button(second_frame, image=dog_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(dog_unclick))
-        dog.place(x = 729, y = 1480)
+        if isFull():
+            dog = tk.Button(second_frame, image=dog_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(dog_unclick))
+            dog.place(x = 729, y = 1480)
+            addInter("dog")
     def dog_unclick():
         dog = tk.Button(second_frame, image=dog_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(dog_click))
         dog.place(x = 732, y = 1482)
+        removeInter("dog")
     dog_unclick()
     
     def cat_click():
-        cat = tk.Button(second_frame, image=cat_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(cat_unclick))
-        cat.place(x = 730, y = 1560)
+        if isFull():
+            cat = tk.Button(second_frame, image=cat_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(cat_unclick))
+            cat.place(x = 730, y = 1560)
+            addInter("cat")
     def cat_unclick():
         cat = tk.Button(second_frame, image=cat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(cat_click))
         cat.place(x = 732, y = 1564)
+        removeInter("cat")
     cat_unclick()
     
     def snake_click():
-        snake = tk.Button(second_frame, image=snake_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(snake_unclick))
-        snake.place(x = 954, y = 1479)
+        if isFull():
+            snake = tk.Button(second_frame, image=snake_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(snake_unclick))
+            snake.place(x = 954, y = 1479)
+            addInter("snake")
     def snake_unclick():
         snake = tk.Button(second_frame, image=snake_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(snake_click))
         snake.place(x = 957, y = 1480)
+        removeInter("snake")
     snake_unclick()
     
     def bird_click():
-        bird = tk.Button(second_frame, image=bird_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(bird_unclick))
-        bird.place(x = 955, y = 1562)
+        if isFull():
+            bird = tk.Button(second_frame, image=bird_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(bird_unclick))
+            bird.place(x = 955, y = 1562)
+            addInter("bird")
     def bird_unclick():
         bird = tk.Button(second_frame, image=bird_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0,command= partial(bird_click))
         bird.place(x = 955, y = 1563)
+        removeInter("bird")
     bird_unclick()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     #----------------------------------------------------------------------------------------------------------------------------
     #Continue Button

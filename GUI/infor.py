@@ -26,13 +26,19 @@ def Infor_screen():
     root.geometry('900x500')
     root.resizable(width=False, height=False)
 
-    background_img = tk.PhotoImage(file = "GUI/sign_up_img/profile_information_img/newww_bg.png")
+    background_img = tk.PhotoImage(file = "GUI/sign_up_img/profile_information_img/new_bg.png")
     continue_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/continue.png")
     male_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/male.png")
     female_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/female.png")
     les_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/les.png")
     gay_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/gay.png")
     bi_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/bi.png")
+    
+    male_click_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/male_click.png")
+    female_click_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/female_click.png")
+    les_click_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/les_click.png")
+    gay_click_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/gay_click.png")
+    bi_click_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/bi_click.png")
 
     
 
@@ -44,19 +50,19 @@ def Infor_screen():
     
     def MALE():
         gender[0] = "male"
-        Label(root, image=male_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 718, y= 250)
+        Label(root, image=male_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 718, y= 250)
     def FEMALE():
         gender[0] = "female"
-        Label(root, image=female_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 721, y= 253)
+        Label(root, image=female_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 718, y= 250)
     def LES():
         gender[0] = "les"
-        Label(root, image=les_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 722, y= 253)
+        Label(root, image=les_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 720, y= 251)
     def GAY():
         gender[0] = "gay"
-        Label(root, image=gay_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 722, y= 253)
+        Label(root, image=gay_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 719, y= 250)
     def BI():
         gender[0] = "bi-sexual"
-        Label(root, image=bi_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 718, y= 253)
+        Label(root, image=bi_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 720, y= 250)
     
 
     male_button = tk.Button(label_background, image=male_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command = MALE)
