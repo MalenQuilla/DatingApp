@@ -2,13 +2,14 @@ import tkinter as tk
 from functools import partial
 from database_controller import show_account
 from GUI import sign_up
+from GUI import secure
 
 def confirm_click(username, password, root):
     un = username.get()
     pw = password.get()
     accounts = show_account()
     for account in accounts:
-        if un == account[0] and pw == account[1]:
+        if un == account[0] and pw == secure.decode(account[1]):
             print("login success")
             isSuccess = True
         else:
