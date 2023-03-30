@@ -72,6 +72,7 @@ def Upload_Screen():
             display_img1 = Button(root, image = img_resized, borderwidth=0, highlightthickness=0, command= partial(remove_img1))
             display_img1.place(x = 682, y = 316)
             display_img1.image = img_resized
+            
         elif images[1] == "None":
             images[1] = filename
             img = Image.open(filename)
@@ -94,6 +95,7 @@ def Upload_Screen():
             display_img2 = Button(root, image = img_resized, borderwidth=0, highlightthickness=0, command= partial(remove_img2))
             display_img2.place(x = 1060, y = 316)
             display_img2.image = img_resized
+            
         elif images[2] == "None":
             images[2] = filename
             img = Image.open(filename)
@@ -117,9 +119,9 @@ def Upload_Screen():
             display_image3.place(x = 1060, y = 550)
             display_image3.image = img_resized
     
+    
     upload_button= tk.Button(root, image= upload_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= lambda: upload_file())
     upload_button.place(x = 137, y = 370)
-
 
     continue_button = tk.Button(root, image= continue_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(con_click, images, root))
     continue_button.place(x = 1170, y = 800)
