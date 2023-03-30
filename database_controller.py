@@ -212,10 +212,10 @@ def convertToBinaryData(filename):
     with open(filename, 'rb') as file:
         binaryData = file.read()
     return binaryData
-def insert_image(photo):
-    query = "INSERT INTO Photo(image) " \
-            "VALUES(%s)"
-    args = (convertToBinaryData(photo),)
+def insert_image(photo1, photo2, photo3):
+    query = "INSERT INTO User_photo(image1, image2, image3) " \
+            "VALUES(%s, %s, %s)"
+    args = (convertToBinaryData(photo1), convertToBinaryData(photo2), convertToBinaryData(photo3))
  
     try:
  

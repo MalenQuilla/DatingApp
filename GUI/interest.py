@@ -3,12 +3,14 @@ import textwrap
 from functools import partial
 from tkinter import *
 from database_controller import insert_interest
+from GUI import upload_img
 
 def continue_click(interests, root):
     if len(interests) == 5:
         insert_interest(interests[0], interests[1], interests[2], interests[3], interests[4])
         root.destroy()
         print("set up interests success")
+        upload_img.Upload_Screen()
         
         
 def Interest_Screen():
