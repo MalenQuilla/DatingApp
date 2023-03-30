@@ -6,11 +6,14 @@ from tkinter.filedialog import askopenfile
 from PIL import Image, ImageTk
 from math import floor
 from database_controller import insert_image
+from GUI import letter_thanks
 
 def con_click(images, root):
     insert_image(images[0], images[1], images[2])
     print('set up images success')
     root.destroy()
+    letter_thanks.Letter_Thanks_Screen()
+    
 
 def Upload_Screen():
     root = tk.Tk()
