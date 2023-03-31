@@ -25,6 +25,24 @@ def connect():
 #----------------------------------------------------------------------------------------------------
 
 #get data from db
+
+def counts():
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM User_account")
+        rows = cursor.fetchall()
+        
+        return(cursor.rowcount)
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+
 def show_account():
     try:
         conn = connect()

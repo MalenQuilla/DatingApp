@@ -1,6 +1,11 @@
 from GUI import *
 
-login.login_screen()
-#basic_information.Basic_Infor()
-#infor.Infor_screen()
-#upload_img.Upload_Screen()
+def main():
+    login.login_screen()
+    user_id = login.get_user_id()
+    status = "profile"
+    while status != "exit":
+        user_profile.Profile_screen(user_id - 1, status)
+        status = user_profile.return_status()
+        
+main()

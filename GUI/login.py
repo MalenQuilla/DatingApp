@@ -4,14 +4,20 @@ from database_controller import show_account
 from GUI import sign_up
 from GUI import secure
 
+def get_user_id():
+    return user_id
+
 def confirm_click(username, password, root):
     un = username.get()
     pw = password.get()
     accounts = show_account()
+    global user_id
     for account in accounts:
-        if un == account[0] and pw == secure.decode(account[1]):
+        if un == account[1] and pw == secure.decode(account[2]):
             print("login success")
             isSuccess = True
+            user_id = account[0]
+            root.destroy()
         else:
             isSuccess = False
     if isSuccess == False:

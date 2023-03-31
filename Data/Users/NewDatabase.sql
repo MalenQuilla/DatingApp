@@ -11,8 +11,10 @@ User_bio TEXT DEFAULT NULL
 );
 
 CREATE TABLE User_account (
+User_id INT NOT NULL AUTO_INCREMENT,
 Account_username TEXT DEFAULT NULL,
-Account_password TEXT DEFAULT NULL
+Account_password TEXT DEFAULT NULL,
+PRIMARY KEY (User_id)
 );
 
 CREATE TABLE User_basics (
