@@ -50,7 +50,6 @@ def show_account():
         cursor.execute("SELECT * FROM User_account")
         rows = cursor.fetchall()
  
-        print('Total Row(s):', cursor.rowcount)
         return(rows)
  
     except Error as e:
@@ -68,7 +67,6 @@ def show_info():
         cursor.execute("SELECT * FROM User_Information")
         rows = cursor.fetchall()
  
-        print('Total Row(s):', cursor.rowcount)
         return(rows)
  
     except Error as e:
@@ -86,7 +84,6 @@ def show_basics():
         cursor.execute("SELECT * FROM User_basics")
         rows = cursor.fetchall()
  
-        print('Total Row(s):', cursor.rowcount)
         return(rows)
  
     except Error as e:
@@ -104,7 +101,6 @@ def show_interests():
         cursor.execute("SELECT * FROM User_interests")
         rows = cursor.fetchall()
  
-        print('Total Row(s):', cursor.rowcount)
         return(rows)
  
     except Error as e:
@@ -245,6 +241,23 @@ def insert_image(photo1, photo2, photo3):
         conn.commit()
     except Error as error:
         print(error)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+def show_photo():
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM User_photo")
+        rows = cursor.fetchall()
+ 
+        return(rows)
+ 
+    except Error as e:
+        print(e)
  
     finally:
         # close connection

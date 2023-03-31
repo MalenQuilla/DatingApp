@@ -2,7 +2,10 @@ from functools import partial
 from tkinter import *
 from tkextrafont import Font
 import datetime
-from database_controller import show_info, show_basics, show_interests
+from io import BytesIO
+from math import floor
+from PIL import Image, ImageTk
+from database_controller import show_info, show_basics, show_interests, show_photo
 
 def return_status():
     return new_status
@@ -164,6 +167,31 @@ def Profile_screen(i, status):
         
         #----------------------------------------------------------------------------------------------------------------------------
         #display photos
+        
+        def resize_img(width, height):
+            wid = floor(width/585)
+            hei = floor(height/796)
+            ration = min(wid, hei)
+            return ration
+        
+        imgss = show_photo()
+        imgs = imgss[i]
+        img = Image.open(BytesIO(imgs[0]))
+        wi, he = img.size 
+        ration = resize_img(wi, he)
+        new_wid = int(wi/ration)
+        new_hei = int(he/ration)
+        img_resized = img.resize((new_wid, new_hei))
+        left = (new_wid - 585)/2
+        right = new_wid - (new_wid - 585)/2
+        upper = (new_hei - 796)/2
+        lower = new_hei - (new_hei - 796)/2
+        img_resized = img_resized.crop([left, upper, right, lower])
+        
+        photo = ImageTk.PhotoImage(img_resized)        
+        Photo = Label(root, image= photo, borderwidth=0, highlightthickness=0)
+        Photo.place(x = 305, y = 226)
+        Photo.image = photo
     
     
     #----------------------------------------------------------------------------------------------------------------------------
