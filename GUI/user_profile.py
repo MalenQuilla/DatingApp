@@ -165,9 +165,10 @@ def Profile_screen(i, status):
         inter_img5.place(x = 1321, y = 870)  
         inter_img5.image = interest5
         
-        #----------------------------------------------------------------------------------------------------------------------------
-        #display photos
-        
+    #----------------------------------------------------------------------------------------------------------------------------
+    #display photos   
+    j = [0]
+    def show_img():           
         def resize_img(width, height):
             wid = floor(width/585)
             hei = floor(height/796)
@@ -176,7 +177,7 @@ def Profile_screen(i, status):
         
         imgss = show_photo()
         imgs = imgss[i]
-        img = Image.open(BytesIO(imgs[0]))
+        img = Image.open(BytesIO(imgs[j[0]]))
         wi, he = img.size 
         ration = resize_img(wi, he)
         new_wid = int(wi/ration)
@@ -192,6 +193,10 @@ def Profile_screen(i, status):
         Photo = Label(root, image= photo, borderwidth=0, highlightthickness=0)
         Photo.place(x = 305, y = 226)
         Photo.image = photo
+        
+        j[0] += 1
+        if j[0] == 3: j[0] = 0
+        
     
     
     #----------------------------------------------------------------------------------------------------------------------------
@@ -208,8 +213,8 @@ def Profile_screen(i, status):
     chat_button = Button(root, image = chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
     chat_button.place(x= 5, y = 700)
     
-    change = Button(root, image=change_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-    change.place(x = 900, y = 780)
+    change = Button(root, image=change_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(show_img))
+    change.place(x = 900, y = 610)
     
     match status:
         case "profile":
@@ -217,6 +222,7 @@ def Profile_screen(i, status):
             profile_button.place(x = 5, y = 300)
             
             display()
+            show_img()
         case "matching":
             matching_button = Button(root, image = matching_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             matching_button.place(x = 5, y = 500)
@@ -225,9 +231,10 @@ def Profile_screen(i, status):
             like.place(x = 900, y = 450)
 
             dislike = Button(root, image=dislike_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-            dislike.place(x = 900, y = 610)
+            dislike.place(x = 900, y = 780)
             
             display()
+            show_img()
         case "chat":
             chat_button = Button(root, image = chat_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             chat_button.place(x= 5, y = 700)
