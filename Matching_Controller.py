@@ -35,7 +35,6 @@ class Randomize:
         self.__seenArray.append(x)
         update_seen((' '.join([str(elem) for elem in self.__seenArray])), self.__user_id)
         return x
-    
     def setLike(self, i):
         self.__likes.append(i)
         print(self.__likes)
