@@ -253,10 +253,11 @@ def Profile_screen(user_id, status):
             show_image(user_id)
         case "matching":
             random_id = Randomize(user_id + 1)
-            id = int(random_id.getMultiRandom())
-            if id != user_id + 1:
-                display(id - 1)
-                show_image(id - 1)
+            id = [0]
+            id[0] = int(random_id.getMultiRandom())
+            if id[0] != user_id + 1:
+                display(id[0] - 1)
+                show_image(id[0] - 1)
             
             matching_button = Button(root, image = matching_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             matching_button.place(x = 5, y = 500)
@@ -265,26 +266,28 @@ def Profile_screen(user_id, status):
 
             
             def like_click():
-                new_id = int(random_id.getMultiRandom())
-                if new_id == user_id + 1: profile_click(root)
+                random_id.setLike(id[0])
+                
+                id[0] = int(random_id.getMultiRandom())
+                if id[0] == user_id + 1: profile_click(root)
                 
                 refresh = Label(root, image = refresh_img, borderwidth=0, highlightthickness=0)
                 refresh.place(x = 1095, y = 270)
                 refresh.image = refresh_img
                 
-                display(new_id - 1)
-                show_image(new_id - 1)
+                display(id[0] - 1)
+                show_image(id[0] - 1)
                 
             def dislike_click():
-                new_id = int(random_id.getMultiRandom())
-                if new_id == user_id + 1: profile_click(root)
+                id[0] = int(random_id.getMultiRandom())
+                if id[0] == user_id + 1: profile_click(root)
                 
                 refresh = Label(root, image = refresh_img, borderwidth=0, highlightthickness=0)
                 refresh.place(x = 1095, y = 270)
                 refresh.image = refresh_img
                 
-                display(new_id - 1)
-                show_image(new_id - 1)
+                display(id[0] - 1)
+                show_image(id[0] - 1)
             
             like = Button(root, image=like_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(like_click))
             like.place(x = 900, y = 450)

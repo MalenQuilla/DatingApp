@@ -1,5 +1,5 @@
 import random
-from database_controller import show_seen, counts, update_seen
+from database_controller import show_seen, counts, update_seen, show_liked, update_liked
 
 class Randomize:
     def __init__(self, user_id):
@@ -13,6 +13,8 @@ class Randomize:
         seens = show_seen()
         seen = seens[user_id - 1]
         self.__seenArray = seen[0].split(" ")
+        
+        self.__likes = show_liked(self.__user_id - 1)
     def returnInfo(self):
         return self.__IdArray, self.__seenArray
     def getMultiRandom(self):
@@ -33,3 +35,8 @@ class Randomize:
         self.__seenArray.append(x)
         update_seen((' '.join([str(elem) for elem in self.__seenArray])), self.__user_id)
         return x
+    
+    def setLike(self, i):
+        self.__likes.append(i)
+        print(self.__likes)
+        update_liked(' '.join([str(elem) for elem in self.__likes]), self.__user_id)

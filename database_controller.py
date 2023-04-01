@@ -150,6 +150,45 @@ def update_seen(new_seen, user_id):
         cursor.close()
         conn.close()
         
+def show_liked(i):
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT Liked FROM User_match WHERE id = %s", (i,))
+        rows = cursor.fetchall()
+ 
+        return(rows)
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+def update_liked(new_liked, user_id):
+    query = """ UPDATE User_match
+                SET Liked = %s
+                WHERE id = %s """
+ 
+    data = (new_liked, user_id)
+    try:
+        conn = connect()
+        
+        cursor = conn.cursor()
+        cursor.execute(query, data)
+        
+        conn.commit()
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
 #----------------------------------------------------------------------------------------------------
 #set data to db
 
