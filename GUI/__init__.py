@@ -7,3 +7,4 @@ from GUI import upload_img
 from GUI import secure
 from GUI import letter_thanks
 from GUI import user_profile
+from GUI import chat

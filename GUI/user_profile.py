@@ -26,6 +26,11 @@ def profile_click(root):
     new_status = "profile"
     root.destroy()
     
+def chat_click(root):
+    global new_status
+    new_status = "chat"
+    root.destroy()
+    
 def Profile_screen(user_id, status):
   
     root = Tk()
@@ -51,7 +56,6 @@ def Profile_screen(user_id, status):
     # Taskbar click
     profile_click_img = PhotoImage(file="GUI/MAIN/match_img/task_bar_img/taskbar_click/open_profile_button_click.png")
     matching_click_img = PhotoImage(file="GUI/MAIN/match_img/task_bar_img/taskbar_click/open_match_button_click.png")
-    chat_click_img = PhotoImage(file="GUI/MAIN/match_img/task_bar_img/taskbar_click/open_chat_button_click.png")
     #----------------------------------------------------------------------------------------------------------------------------
     # LIKE - DISLIKE - CHANGE IMG
     like_img = PhotoImage(file="GUI/MAIN/match_img/button_in_match_img/like.png")
@@ -241,7 +245,7 @@ def Profile_screen(user_id, status):
     matching_button = Button(root, image = matching_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(matching_click, root))
     matching_button.place(x = 5, y = 500)
     
-    chat_button = Button(root, image = chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+    chat_button = Button(root, image = chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(chat_click, root))
     chat_button.place(x= 5, y = 700)
         
     match status:
@@ -294,9 +298,5 @@ def Profile_screen(user_id, status):
 
             dislike = Button(root, image=dislike_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(dislike_click))
             dislike.place(x = 900, y = 780)
-            
-        case "chat":
-            chat_button = Button(root, image = chat_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-            chat_button.place(x= 5, y = 700)
     
     root.mainloop()

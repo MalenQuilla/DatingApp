@@ -7,5 +7,7 @@ def main():
     while status != "exit":
         user_profile.Profile_screen(user_id - 1, status)
         status = user_profile.return_status()
-        
+        if status == "chat":
+            chat.Chat_Screen()
+            status = chat.return_status()
 main()
