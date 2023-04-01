@@ -30,7 +30,7 @@ def counts():
     try:
         conn = connect()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM User_account")
+        cursor.execute("SELECT User_id FROM User_account")
         rows = cursor.fetchall()
         
         return(cursor.rowcount)
@@ -111,6 +111,45 @@ def show_interests():
         cursor.close()
         conn.close()
         
+def show_seen():
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT Seen FROM User_match")
+        rows = cursor.fetchall()
+ 
+        return(rows)
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+def update_seen(new_seen, user_id):
+    query = """ UPDATE User_match
+                SET Seen = %s
+                WHERE id = %s """
+ 
+    data = (new_seen, user_id)
+    try:
+        conn = connect()
+        
+        cursor = conn.cursor()
+        cursor.execute(query, data)
+        
+        conn.commit()
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
 #----------------------------------------------------------------------------------------------------
 #set data to db
 
@@ -118,6 +157,27 @@ def insert_account(Account_username, Account_password):
     query = "INSERT INTO User_account(Account_username, Account_password) " \
             "VALUES(%s,%s)"
     args = (Account_username, Account_password)
+ 
+    try:
+ 
+        conn = connect()
+ 
+        cursor = conn.cursor()
+        cursor.execute(query, args)
+  
+        conn.commit()
+    except Error as error:
+        print(error)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+
+def insert_matching(seen):
+    query = "INSERT INTO User_match(Seen) " \
+            "VALUES(%s)"
+    args = (seen,)
  
     try:
  

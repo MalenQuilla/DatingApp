@@ -1,6 +1,6 @@
 import tkinter as tk
 from functools import partial
-from database_controller import show_account, insert_account
+from database_controller import show_account, insert_account, insert_matching
 from GUI import infor
 from GUI import secure
 
@@ -10,7 +10,7 @@ def continue_click(username, password, confirm_password, root):
     cpw = confirm_password.get()
     accounts = show_account()
     for account in accounts:
-        if account[0] == un or un == "User Name":
+        if account[1] == un or un == "User Name":
             Error1(root)
     if un == pw:
         Error2(root)
@@ -18,6 +18,11 @@ def continue_click(username, password, confirm_password, root):
         Error3(root)
     else:
         insert_account(un, secure.encode(pw))
+        accs = show_account()
+        acc = accs[-1]
+        user_id = str(acc[0])
+        print(user_id)
+        insert_matching(user_id)
         print("set account success")
         root.destroy()
         infor.Infor_screen()

@@ -6,5 +6,4 @@ from GUI import interest
 from GUI import upload_img
 from GUI import secure
 from GUI import letter_thanks
-from GUI import matching
 from GUI import user_profile

@@ -360,7 +360,7 @@ def Basic_Infor():
     year, month, day = [int(item) for item in components]
     match month:
         case 12:
-            zodiac = "Sagitarius" if (day < 22) else "Capricorn"
+            zodiac = "Sagittarius" if (day < 22) else "Capricorn"
         case 1:
             zodiac = "Capricorn" if (day < 20) else "Aquarius"
         case 2:

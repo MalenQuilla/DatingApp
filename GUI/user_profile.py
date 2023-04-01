@@ -6,26 +6,27 @@ from io import BytesIO
 from math import floor
 from PIL import Image, ImageTk
 from database_controller import show_info, show_basics, show_interests, show_photo
+from Matching_Controller import Randomize
 
 def return_status():
     return new_status
 
 def exit_click(root):
-    root.destroy()
     global new_status 
     new_status = "exit"
+    root.destroy()
     
 def matching_click(root):
-    root.destroy()
     global new_status
     new_status = "matching"
+    root.destroy()
     
 def profile_click(root):
-    root.destroy()
     global new_status
     new_status = "profile"
+    root.destroy()
     
-def Profile_screen(i, status):
+def Profile_screen(user_id, status):
   
     root = Tk()
 
@@ -56,8 +57,9 @@ def Profile_screen(i, status):
     like_img = PhotoImage(file="GUI/MAIN/match_img/button_in_match_img/like.png")
     dislike_img = PhotoImage(file="GUI/MAIN/match_img/button_in_match_img/dislike.png")
     change_img = PhotoImage(file="GUI/MAIN/match_img/button_in_match_img/swap.png")
+    
     #----------------------------------------------------------------------------------------------------------------------------
-    def display():
+    def display(i):
         #display info
         infos = show_info()
         info = infos[i]
@@ -166,9 +168,11 @@ def Profile_screen(i, status):
         inter_img5.image = interest5
         
     #----------------------------------------------------------------------------------------------------------------------------
-    #display photos   
+    #display photos  
     j = [0]
-    def show_img():           
+    def show_image(i):  
+        j[0] = 0 
+     
         def resize_img(width, height):
             wid = floor(width/585)
             hei = floor(height/796)
@@ -194,10 +198,37 @@ def Profile_screen(i, status):
         Photo.place(x = 305, y = 226)
         Photo.image = photo
         
-        j[0] += 1
-        if j[0] == 3: j[0] = 0
-        
+        change = Button(root, image=change_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(change_image, i))
+        change.place(x = 900, y = 610)
     
+    def change_image(i):    
+        j[0] += 1
+        if j[0] == 3: j[0] = 0      
+                
+        def resize_img(width, height):
+            wid = floor(width/585)
+            hei = floor(height/796)
+            ration = min(wid, hei)
+            return ration
+        
+        imgss = show_photo()
+        imgs = imgss[i]
+        img = Image.open(BytesIO(imgs[j[0]]))
+        wi, he = img.size 
+        ration = resize_img(wi, he)
+        new_wid = int(wi/ration)
+        new_hei = int(he/ration)
+        img_resized = img.resize((new_wid, new_hei))
+        left = (new_wid - 585)/2
+        right = new_wid - (new_wid - 585)/2
+        upper = (new_hei - 796)/2
+        lower = new_hei - (new_hei - 796)/2
+        img_resized = img_resized.crop([left, upper, right, lower])
+        
+        photo = ImageTk.PhotoImage(img_resized)        
+        Photo = Label(root, image= photo, borderwidth=0, highlightthickness=0)
+        Photo.place(x = 305, y = 226)
+        Photo.image = photo    
     
     #----------------------------------------------------------------------------------------------------------------------------
     #display button
@@ -212,29 +243,55 @@ def Profile_screen(i, status):
     
     chat_button = Button(root, image = chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
     chat_button.place(x= 5, y = 700)
-    
-    change = Button(root, image=change_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(show_img))
-    change.place(x = 900, y = 610)
-    
+        
     match status:
         case "profile":
             profile_button = Button(root, image = profile_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             profile_button.place(x = 5, y = 300)
-            
-            display()
-            show_img()
+                        
+            display(user_id)
+            show_image(user_id)
         case "matching":
+            random_id = Randomize(user_id + 1)
+            id = int(random_id.getMultiRandom())
+            if id != user_id + 1:
+                display(id - 1)
+                show_image(id - 1)
+            
             matching_button = Button(root, image = matching_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             matching_button.place(x = 5, y = 500)
             
-            like = Button(root, image=like_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+            refresh_img = PhotoImage(file="GUI/MAIN/match_img/refresh.png")
+
+            
+            def like_click():
+                new_id = int(random_id.getMultiRandom())
+                if new_id == user_id + 1: profile_click(root)
+                
+                refresh = Label(root, image = refresh_img, borderwidth=0, highlightthickness=0)
+                refresh.place(x = 1095, y = 270)
+                refresh.image = refresh_img
+                
+                display(new_id - 1)
+                show_image(new_id - 1)
+                
+            def dislike_click():
+                new_id = int(random_id.getMultiRandom())
+                if new_id == user_id + 1: profile_click(root)
+                
+                refresh = Label(root, image = refresh_img, borderwidth=0, highlightthickness=0)
+                refresh.place(x = 1095, y = 270)
+                refresh.image = refresh_img
+                
+                display(new_id - 1)
+                show_image(new_id - 1)
+            
+            like = Button(root, image=like_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(like_click))
             like.place(x = 900, y = 450)
 
-            dislike = Button(root, image=dislike_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+            dislike = Button(root, image=dislike_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(dislike_click))
             dislike.place(x = 900, y = 780)
             
-            display()
-            show_img()
         case "chat":
             chat_button = Button(root, image = chat_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             chat_button.place(x= 5, y = 700)
