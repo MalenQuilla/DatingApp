@@ -64,7 +64,7 @@ def Basic_Infor():
         wo_skip_no_push = tk.Button(root, image=wo_smoke_drink_skip_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= wo_skip_clickk)
         wo_skip_no_push.place(x=171,y=625)
         
-        workout[0] = "active"
+        workout[0] = "Active"
     wo_active_clickk = partial(wo_active_click)
     wo_active = tk.Button(root, image=wo_active_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= wo_active_clickk)
     wo_active.place(x=171,y=475)
@@ -82,7 +82,7 @@ def Basic_Infor():
         wo_skip_no_push = tk.Button(root, image=wo_smoke_drink_skip_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= wo_skip_clickk)
         wo_skip_no_push.place(x=171,y=625)
         
-        workout[0] = "sometimes"
+        workout[0] = "Sometimes"
     wo_sometimes_clickk = partial(wo_sometimes_click)
     wo_sometimes = tk.Button(root, image=wo_sometimes_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= wo_sometimes_clickk)
     wo_sometimes.place(x=171,y=525)
@@ -100,7 +100,7 @@ def Basic_Infor():
         wo_skip_no_push = tk.Button(root, image=wo_smoke_drink_skip_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= wo_skip_clickk)
         wo_skip_no_push.place(x=171,y=625)
         
-        workout[0] = "almost never"
+        workout[0] = "Almost never"
     wo_never_clickk = partial(wo_never_click)
     wo_almost_never = tk.Button(root, image=wo_almost_never_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= wo_never_clickk)
     wo_almost_never.place(x=171,y=575)
@@ -152,7 +152,7 @@ def Basic_Infor():
         smoke_skip_no_push = tk.Button(root, image=wo_smoke_drink_skip_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= smoke_skip_clickk)
         smoke_skip_no_push.place(x=485,y=625)
         
-        smoke[0] = "socially"
+        smoke[0] = "Socially"
     smoke_social_clickk = partial(smoke_social_click)
     smoke_socially = tk.Button(root, image=smoke_socially_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= smoke_social_clickk)
     smoke_socially.place(x=485,y=475)
@@ -170,7 +170,7 @@ def Basic_Infor():
         smoke_skip_no_push = tk.Button(root, image=wo_smoke_drink_skip_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= smoke_skip_clickk)
         smoke_skip_no_push.place(x=485,y=625)
         
-        smoke[0] = "never"
+        smoke[0] = "Never"
     smoke_never_clickk = partial(smoke_never_click)
     smoke_never = tk.Button(root, image=smoke_never_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= smoke_never_clickk)
     smoke_never.place(x=485,y=525)
@@ -188,7 +188,7 @@ def Basic_Infor():
         smoke_skip_no_push = tk.Button(root, image=wo_smoke_drink_skip_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= smoke_skip_clickk)
         smoke_skip_no_push.place(x=485,y=625)
         
-        smoke[0] = "regularly"
+        smoke[0] = "Regularly"
     smoke_regu_clickk = partial(smoke_regu_click)
     smoke_regularly = tk.Button(root, image=smoke_regularly_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= smoke_regu_clickk)
     smoke_regularly.place(x=485,y=575)
@@ -243,7 +243,7 @@ def Basic_Infor():
         drink_skip_no_push = tk.Button(root, image=wo_smoke_drink_skip_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= drink_skip_clickk)
         drink_skip_no_push.place(x=805,y=625)
         
-        drink[0] = "frequently"
+        drink[0] = "Frequently"
     drink_feq_clickk = partial(drink_feq_click)
     drink_frequently = tk.Button(root, image=drink_frequently_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= drink_feq_clickk)
     drink_frequently.place(x=805,y=475)
@@ -261,7 +261,7 @@ def Basic_Infor():
         drink_skip_no_push = tk.Button(root, image=wo_smoke_drink_skip_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= drink_skip_clickk)
         drink_skip_no_push.place(x=805,y=625)
         
-        drink[0] = "rarely"
+        drink[0] = "Rarely"
     drink_rar_clickk = partial(drink_rar_click)
     drink_rarely = tk.Button(root, image=drink_rarely_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= drink_rar_clickk)
     drink_rarely.place(x=805,y=525)
@@ -279,7 +279,7 @@ def Basic_Infor():
         drink_skip_no_push = tk.Button(root, image=wo_smoke_drink_skip_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= drink_skip_clickk)
         drink_skip_no_push.place(x=805,y=625)
         
-        drink[0] = "regularly"
+        drink[0] = "Regularly"
     drink_reg_clickk = partial(drink_reg_click)
     drink_regularly = tk.Button(root, image=drink_regularly_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= drink_reg_clickk)
     drink_regularly.place(x=805,y=575)
@@ -318,27 +318,27 @@ def Basic_Infor():
             case 0:
                 high_school = tk.Button(root, image=high_school_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
                 high_school.place(x=521,y=263)
-                education[0] = "high school"
+                education[0] = "High school"
             case 1:
                 professional_college = tk.Button(root, image=professional_college_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
                 professional_college.place(x=520,y=261)
-                education[0] = "professional college"
+                education[0] = "Professional college"
             case 2:
                 university = tk.Button(root, image=university_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
                 university.place(x=522,y=262)
-                education[0] = "university"
+                education[0] = "University"
             case 3:
                 master_degree = tk.Button(root, image=master_degree_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
                 master_degree.place(x=520,y=262)
-                education[0] = "master degree"
+                education[0] = "Master degree"
             case 4:
                 professor = tk.Button(root, image=professor_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
                 professor.place(x=522,y=261)
-                education[0] = "professor"
+                education[0] = "Professor"
             case 5:
                 vocational_school = tk.Button(root, image=vocational_school_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
                 vocational_school.place(x=519,y=260)
-                education[0] = "vocational school"
+                education[0] = "Vocational school"
             case 6:
                 education_skip = tk.Button(root, image=education_skip_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
                 education_skip.place(x=522,y=261)
@@ -360,29 +360,29 @@ def Basic_Infor():
     year, month, day = [int(item) for item in components]
     match month:
         case 12:
-            zodiac = "sagitarius" if (day < 22) else "capricorn"
+            zodiac = "Sagittarius" if (day < 22) else "Capricorn"
         case 1:
-            zodiac = "capricorn" if (day < 20) else "aquarius"
+            zodiac = "Capricorn" if (day < 20) else "Aquarius"
         case 2:
-            zodiac = "aquarius" if (day < 19) else "pisces"
+            zodiac = "Aquarius" if (day < 19) else "Pisces"
         case 3:
-            zodiac = "pisces" if (day < 21) else "aries"
+            zodiac = "Pisces" if (day < 21) else "Aries"
         case 4:
-            zodiac = "aries" if (day < 20) else "taurus"
+            zodiac = "Aries" if (day < 20) else "Taurus"
         case 5:
-            zodiac = "taurus" if (day < 21) else "gemini"
+            zodiac = "Taurus" if (day < 21) else "Gemini"
         case 6:
-            zodiac = "gemini" if (day < 21) else "cancer"
+            zodiac = "Gemini" if (day < 21) else "Cancer"
         case 7:
-            zodiac = "cancer" if (day < 23) else "leo"
+            zodiac = "Cancer" if (day < 23) else "Leo"
         case 8:
-            zodiac = "leo" if (day < 23) else "virgo"
+            zodiac = "Leo" if (day < 23) else "Virgo"
         case 9:
-            zodiac = "virgo" if (day < 23) else "libra"
+            zodiac = "Virgo" if (day < 23) else "Libra"
         case 10:
-            zodiac = "libra" if (day < 23) else "scorpio"
+            zodiac = "Libra" if (day < 23) else "Scorpio"
         case 11:
-            zodiac = "scorpio" if (day < 22) else "sagittarius"
+            zodiac = "Scorpio" if (day < 22) else "Sagittarius"
     
     #Zodiac
     aries_img = tk.PhotoImage(file="GUI/sign_up_img/basic_information_img/Zodiac/aries.png")
@@ -399,40 +399,40 @@ def Basic_Infor():
     pisces_img = tk.PhotoImage(file="GUI/sign_up_img/basic_information_img/Zodiac/pisces.png")
     
     match zodiac:
-        case "aries":
+        case "Aries":
             aries = tk.Label(label_background, image=aries_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             aries.place(x=861,y=260)
-        case "taurus":
+        case "Taurus":
             taurus = tk.Label(label_background, image=taurus_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             taurus.place(x=859,y=260)
-        case "gemini":
+        case "Gemini":
             gemini = tk.Label(label_background, image=gemini_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             gemini.place(x=861,y=260)
-        case "cancer":
+        case "Cancer":
             cancer = tk.Label(label_background, image=cancer_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             cancer.place(x=859,y=260)
-        case "leo":
+        case "Leo":
             leo = tk.Label(label_background, image=leo_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             leo.place(x=861,y=260)
-        case "virgo":
+        case "Virgo":
             virgo = tk.Label(label_background, image=virgo_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             virgo.place(x=860,y=260)
-        case "libra":
+        case "Libra":
             libra = tk.Label(label_background, image=libra_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             libra.place(x=859,y=260)
-        case "scorpio":
+        case "Scorpio":
             scorpio = tk.Label(label_background, image=scorpio_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             scorpio.place(x=861,y=260)
-        case "sagittarius":
+        case "Sagittarius":
             sagittarius = tk.Label(label_background, image=sagittarius_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             sagittarius.place(x=861,y=260)
-        case "capricorn":
+        case "Capricorn":
             capricorn = tk.Label(label_background, image=capricorn_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             capricorn.place(x=861,y=260)
-        case "aquarius":
+        case "Aquarius":
             aquarius = tk.Label(label_background, image=aquarius_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             aquarius.place(x=860,y=260)
-        case "pisces":
+        case "Pisces":
             pisces = tk.Label(label_background, image=pisces_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             pisces.place(x=859,y=260)
     

@@ -49,19 +49,19 @@ def Infor_screen():
     gender = ['None']
     
     def MALE():
-        gender[0] = "male"
+        gender[0] = "Male"
         Label(root, image=male_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 718, y= 250)
     def FEMALE():
-        gender[0] = "female"
+        gender[0] = "Female"
         Label(root, image=female_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 718, y= 250)
     def LES():
-        gender[0] = "les"
+        gender[0] = "Les"
         Label(root, image=les_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 720, y= 251)
     def GAY():
-        gender[0] = "gay"
+        gender[0] = "Gay"
         Label(root, image=gay_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 719, y= 250)
     def BI():
-        gender[0] = "bi-sexual"
+        gender[0] = "Bi-sexual"
         Label(root, image=bi_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0).place(x = 720, y= 250)
     
 
