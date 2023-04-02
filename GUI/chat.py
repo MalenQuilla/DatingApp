@@ -98,7 +98,6 @@ def Chat_Screen():
     send_message = tk.Button(root, image=send_message_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
     send_message.place(x = 1680, y = 920)    
 
-
     #--------------------------------------------------------------------------------------------------------------------------------------------------
     
     root.mainloop()
