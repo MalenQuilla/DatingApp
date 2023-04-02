@@ -1,1 +1,1 @@
-import Data.user
+from Data import user

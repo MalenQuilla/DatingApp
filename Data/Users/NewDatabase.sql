@@ -1,0 +1,51 @@
+DROP database IF EXISTS DatingApp;
+CREATE database IF NOT EXISTS DatingApp;
+USE DatingApp;
+
+CREATE TABLE User_information (
+User_name TEXT DEFAULT NULL,
+User_dob TEXT DEFAULT NULL,
+User_gender TEXT DEFAULT NULL,
+User_location TEXT DEFAULT NULL,
+User_bio TEXT DEFAULT NULL
+);
+
+CREATE TABLE User_account (
+User_id INT NOT NULL AUTO_INCREMENT,
+Account_username TEXT DEFAULT NULL,
+Account_password TEXT DEFAULT NULL,
+PRIMARY KEY (User_id)
+);
+
+CREATE TABLE User_basics (
+Basics_height TEXT DEFAULT NULL,
+Basics_weight TEXT DEFAULT NULL,
+Basics_zodiac TEXT DEFAULT NULL,
+Basics_education TEXT DEFAULT NULL,
+Basics_workout TEXT DEFAULT NULL,
+Basics_smoke TEXT DEFAULT NULL,
+Basics_drink TEXT DEFAULT NULL
+);
+
+CREATE TABLE User_interests (
+interest1 TEXT DEFAULT NULL,
+interest2 TEXT DEFAULT NULL,
+interest3 TEXT DEFAULT NULL,
+interest4 TEXT DEFAULT NULL,
+interest5 TEXT DEFAULT NULL
+);
+
+CREATE TABLE User_photo (
+image1 LONGBLOB NOT NULL,
+image2 LONGBLOB NOT NULL,
+image3 LONGBLOB NOT NULL
+);
+
+CREATE TABLE User_match (
+id INT NOT NULL AUTO_INCREMENT,
+Seen TEXT DEFAULT NULL,
+Liked VARCHAR(255) DEFAULT "",
+Disliked VARCHAR(255) DEFAULT "",
+Matched VARCHAR(255) DEFAULT "",
+PRIMARY KEY (id)
+);
