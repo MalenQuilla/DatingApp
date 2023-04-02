@@ -189,6 +189,28 @@ def update_liked(new_liked, user_id):
         cursor.close()
         conn.close()
         
+def update_matched(new_matched, user_id):
+    query = """ UPDATE User_match
+                SET Matched = %s
+                WHERE id = %s """
+ 
+    data = (new_matched, user_id)
+    try:
+        conn = connect()
+        
+        cursor = conn.cursor()
+        cursor.execute(query, data)
+        
+        conn.commit()
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
 #----------------------------------------------------------------------------------------------------
 #set data to db
 

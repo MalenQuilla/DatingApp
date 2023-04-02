@@ -1,5 +1,5 @@
 import random
-from database_controller import show_seen, counts, update_seen, show_liked, update_liked
+from database_controller import show_seen, counts, update_seen, show_liked, update_liked, update_matched
 
 class Randomize:
     def __init__(self, user_id):
@@ -14,7 +14,10 @@ class Randomize:
         seen = seens[user_id - 1]
         self.__seenArray = seen[0].split(" ")
         
-        self.__likes = show_liked(self.__user_id - 1)
+        likess = show_liked(self.__user_id)
+        likes = likess[0]
+        like = likes[0]
+        self.__likes = like.split(" ")
     def returnInfo(self):
         return self.__IdArray, self.__seenArray
     def getMultiRandom(self):
@@ -39,3 +42,26 @@ class Randomize:
         self.__likes.append(i)
         print(self.__likes)
         update_liked(' '.join([str(elem) for elem in self.__likes]), self.__user_id)
+        
+
+class Match:
+    def __init__(self, user_id):
+        self.__user_id = user_id
+
+        likess = show_liked(self.__user_id)
+        likes = likess[0]
+        like = likes[0]
+        self.__likes = like.split(" ")
+        self.__match = []
+    def isMatch(self):
+        for i in self.__likes:
+            try:
+                likess = show_liked(int(i))
+                likes = likess[0]
+                like = likes[0]
+                liked = like.split(" ")
+                if str(self.__user_id) in liked:
+                    self.__match.append(i)
+            except ValueError:
+                pass
+        update_matched(' '.join([str(elem) for elem in self.__match]), self.__user_id)
