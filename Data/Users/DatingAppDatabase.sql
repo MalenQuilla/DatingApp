@@ -67,9 +67,17 @@ END $$
 
 Call New_user ('Tung', '20', 'Male', 'Hanoi', 'thisisbio', 'anhtung207', 'pass123', '1m77', '62kg', 'Cancer', 'College',
  'Gym', 'Sometimes', 'Coffee', 'Basketball', 'Drawing', 'Usually', 'Sometimes', 'Action', 'Manga', 'RnB', 'Pho', 'Beach', 'Dogs & Cats');
+<<<<<<< HEAD
  
  SELECT * FROM User_information;
  SELECT * FROM User_account;
  SELECT * FROM User_basics;
  SELECT * FROM User_interests;
  
+=======
+
+ SELECT * FROM User_information;
+ SELECT * FROM User_account;
+ SELECT * FROM User_basics;
+ SELECT * FROM User_interests;
+>>>>>>> 3efd7594bf85f60c1e86246a812e3abcdb19bd09
