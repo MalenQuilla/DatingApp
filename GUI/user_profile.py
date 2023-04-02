@@ -3,7 +3,7 @@ from tkinter import *
 from tkextrafont import Font
 import datetime
 from io import BytesIO
-from math import floor
+from math import floor, ceil
 from PIL import Image, ImageTk
 from database_controller import show_info, show_basics, show_interests, show_photo
 from Matching_Controller import Randomize
@@ -183,13 +183,24 @@ def Profile_screen(user_id, status):
             ration = min(wid, hei)
             return ration
         
+        def resize_img2(width, height):
+            wid = ceil(585/width)
+            hei = ceil(796/height)
+            ration = min(wid, hei)
+            return ration
+        
         imgss = show_photo()
         imgs = imgss[i]
         img = Image.open(BytesIO(imgs[j[0]]))
         wi, he = img.size 
-        ration = resize_img(wi, he)
-        new_wid = int(wi/ration)
-        new_hei = int(he/ration)
+        if wi < 585 or he < 796:
+            ration = resize_img2(wi, he)
+            new_wid = int(wi*ration)
+            new_hei = int(he*ration)
+        else:
+            ration = resize_img(wi, he)
+            new_wid = int(wi/ration)
+            new_hei = int(he/ration)
         img_resized = img.resize((new_wid, new_hei))
         left = (new_wid - 585)/2
         right = new_wid - (new_wid - 585)/2
@@ -215,13 +226,24 @@ def Profile_screen(user_id, status):
             ration = min(wid, hei)
             return ration
         
+        def resize_img2(width, height):
+            wid = ceil(585/width)
+            hei = ceil(796/height)
+            ration = min(wid, hei)
+            return ration
+        
         imgss = show_photo()
         imgs = imgss[i]
         img = Image.open(BytesIO(imgs[j[0]]))
         wi, he = img.size 
-        ration = resize_img(wi, he)
-        new_wid = int(wi/ration)
-        new_hei = int(he/ration)
+        if wi < 585 or he < 796:
+            ration = resize_img2(wi, he)
+            new_wid = int(wi*ration)
+            new_hei = int(he*ration)
+        else:
+            ration = resize_img(wi, he)
+            new_wid = int(wi/ration)
+            new_hei = int(he/ration)
         img_resized = img.resize((new_wid, new_hei))
         left = (new_wid - 585)/2
         right = new_wid - (new_wid - 585)/2

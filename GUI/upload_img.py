@@ -4,7 +4,7 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter.filedialog import askopenfile
 from PIL import Image, ImageTk
-from math import floor
+from math import floor, ceil
 from database_controller import insert_image
 from GUI import letter_thanks
 
@@ -37,26 +37,41 @@ def Upload_Screen():
         hei = floor(height/435)
         ration = min(wid, hei)
         return ration
+    def resize_img12(width, height):
+            wid = ceil(335/width)
+            hei = ceil(435/height)
+            ration = min(wid, hei)
+            return ration
     
     def resize_img2_3(width, height):
         wid = floor(width/230)
         hei = floor(height/200)
         ration = min(wid, hei)
         return ration
+    def resize_img2_32(width, height):
+            wid = ceil(230/width)
+            hei = ceil(200/height)
+            ration = min(wid, hei)
+            return ration
         
     def upload_file():
         global img
         #f_types = [('JPG Files', '*.jpg'), ('JPEG Files', '*.jpeg'), ('PNG Files', '*.png')]
-        f_types = [('Image', '*.jpg *.jpeg *.png')]
+        f_types = [('Image', '*.jpg *.jpeg *.png *.webp')]
         filename = filedialog.askopenfilename(multiple = False, filetypes = f_types)
         
         if images[0] == "None":
             images[0] = filename
             img = Image.open(filename)
             width, height = img.size  
-            ration = resize_img1(width, height)
-            new_wid = int(width/ration)
-            new_hei = int(height/ration)
+            if width < 335 or height < 435:
+                ration = resize_img12(width, height)
+                new_wid = int(width*ration)
+                new_hei = int(height*ration)
+            else:
+                ration = resize_img1(width, height)
+                new_wid = int(width/ration)
+                new_hei = int(height/ration)
             img_resized = img.resize((new_wid, new_hei))
             left = (new_wid - 335)/2
             right = new_wid - (new_wid - 335)/2
@@ -77,9 +92,14 @@ def Upload_Screen():
             images[1] = filename
             img = Image.open(filename)
             width, height = img.size  
-            ration = resize_img2_3(width, height)
-            new_wid = int(width/ration)
-            new_hei = int(height/ration)
+            if width < 230 or height < 200:
+                ration = resize_img2_32(width, height)
+                new_wid = int(width*ration)
+                new_hei = int(height*ration)
+            else:
+                ration = resize_img2_3(width, height)
+                new_wid = int(width/ration)
+                new_hei = int(height/ration)
             img_resized = img.resize((new_wid, new_hei))
             left = (new_wid - 230)/2
             right = new_wid - (new_wid - 230)/2
@@ -100,9 +120,14 @@ def Upload_Screen():
             images[2] = filename
             img = Image.open(filename)
             width, height = img.size  
-            ration = resize_img2_3(width, height)
-            new_wid = int(width/ration)
-            new_hei = int(height/ration)
+            if width < 230 or height < 200:
+                ration = resize_img2_32(width, height)
+                new_wid = int(width*ration)
+                new_hei = int(height*ration)
+            else:
+                ration = resize_img2_3(width, height)
+                new_wid = int(width/ration)
+                new_hei = int(height/ration)
             img_resized = img.resize((new_wid, new_hei))
             left = (new_wid - 230)/2
             right = new_wid - (new_wid - 230)/2
