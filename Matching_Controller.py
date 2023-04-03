@@ -33,14 +33,14 @@ class Randomize:
         if len(a) == 0:
             return self.__user_id    
         
-        print(a)
+        # print(a)
         x = random.choice(a)
         self.__seenArray.append(x)
         update_seen((' '.join([str(elem) for elem in self.__seenArray])), self.__user_id)
         return x
     def setLike(self, i):
         self.__likes.append(i)
-        print(self.__likes)
+        #print(self.__likes)
         update_liked(' '.join([str(elem) for elem in self.__likes]), self.__user_id)
         
 

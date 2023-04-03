@@ -2,8 +2,7 @@ import tkinter as tk
 import textwrap
 from functools import partial
 from tkinter import *
-from database_controller import insert_interest
-from GUI import upload_img
+
 
 def continue_click(interests, root):
     if len(interests) == 5:
