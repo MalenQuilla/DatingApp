@@ -63,9 +63,12 @@ def Profile_screen(user_id, status):
     change_img = PhotoImage(file="GUI/MAIN/match_img/button_in_match_img/swap.png")
     
     #----------------------------------------------------------------------------------------------------------------------------
+    infos = show_info()
+    basics = show_basics()
+    interestss = show_interests()
+    
     def display(i):
         #display info
-        infos = show_info()
         info = infos[i]
         name_data = info[0].split(' ')
         
@@ -102,7 +105,6 @@ def Profile_screen(user_id, status):
         
         #----------------------------------------------------------------------------------------------------------------------------
         #display basics
-        basics = show_basics()
         basic = basics[i]
         
         height_data = basic[0]
@@ -143,7 +145,6 @@ def Profile_screen(user_id, status):
                 
         #----------------------------------------------------------------------------------------------------------------------------
         #display interests
-        interestss = show_interests()
         interests = interestss[i]
         
         interest1 = PhotoImage(file="GUI/MAIN/match_img/interest_match_img/All_img/" + interests[0] + ".png")
@@ -189,8 +190,7 @@ def Profile_screen(user_id, status):
             ration = min(wid, hei)
             return ration
         
-        imgss = show_photo()
-        imgs = imgss[i]
+        imgs = show_photo(i + 1)[0]
         img = Image.open(BytesIO(imgs[j[0]]))
         wi, he = img.size 
         if wi < 585 or he < 796:
@@ -232,8 +232,7 @@ def Profile_screen(user_id, status):
             ration = min(wid, hei)
             return ration
         
-        imgss = show_photo()
-        imgs = imgss[i]
+        imgs = show_photo(i + 1)[0]
         img = Image.open(BytesIO(imgs[j[0]]))
         wi, he = img.size 
         if wi < 585 or he < 796:
