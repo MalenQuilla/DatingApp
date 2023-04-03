@@ -368,11 +368,14 @@ def insert_image(photo1, photo2, photo3):
         cursor.close()
         conn.close()
         
-def show_photo():
+def show_photo(id):
+    query = """ SELECT image1, image2, image3 FROM User_photo WHERE id = %s """
+    data = (id,)
+    
     try:
         conn = connect()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM User_photo")
+        cursor.execute(query, data)
         rows = cursor.fetchall()
  
         return(rows)

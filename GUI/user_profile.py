@@ -63,9 +63,12 @@ def Profile_screen(user_id, status):
     change_img = PhotoImage(file="GUI/MAIN/match_img/button_in_match_img/swap.png")
     
     #----------------------------------------------------------------------------------------------------------------------------
+    infos = show_info()
+    basics = show_basics()
+    interestss = show_interests()
+    
     def display(i):
         #display info
-        infos = show_info()
         info = infos[i]
         name_data = info[0].split(' ')
         
@@ -102,7 +105,6 @@ def Profile_screen(user_id, status):
         
         #----------------------------------------------------------------------------------------------------------------------------
         #display basics
-        basics = show_basics()
         basic = basics[i]
         
         height_data = basic[0]
@@ -143,7 +145,6 @@ def Profile_screen(user_id, status):
                 
         #----------------------------------------------------------------------------------------------------------------------------
         #display interests
-        interestss = show_interests()
         interests = interestss[i]
         
         interest1 = PhotoImage(file="GUI/MAIN/match_img/interest_match_img/All_img/" + interests[0] + ".png")
@@ -189,8 +190,7 @@ def Profile_screen(user_id, status):
             ration = min(wid, hei)
             return ration
         
-        imgss = show_photo()
-        imgs = imgss[i]
+        imgs = show_photo(i + 1)[0]
         img = Image.open(BytesIO(imgs[j[0]]))
         wi, he = img.size 
         if wi < 585 or he < 796:
@@ -232,8 +232,7 @@ def Profile_screen(user_id, status):
             ration = min(wid, hei)
             return ration
         
-        imgss = show_photo()
-        imgs = imgss[i]
+        imgs = show_photo(i + 1)[0]
         img = Image.open(BytesIO(imgs[j[0]]))
         wi, he = img.size 
         if wi < 585 or he < 796:
@@ -275,15 +274,15 @@ def Profile_screen(user_id, status):
             profile_button = Button(root, image = profile_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             profile_button.place(x = 5, y = 300)
                         
-            display(user_id)
-            show_image(user_id)
+            display(user_id - 1)
+            show_image(user_id - 1)
         case "matching":
-            random_id = Randomize(user_id + 1)
+            random_id = Randomize(user_id)
             id = [0]
             id[0] = int(random_id.getMultiRandom())
             matching_button = Button(root, image = matching_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             matching_button.place(x = 5, y = 500)
-            if id[0] != user_id + 1:
+            if id[0] != user_id:
                 display(id[0] - 1)
                 show_image(id[0] - 1)
                 
@@ -294,7 +293,7 @@ def Profile_screen(user_id, status):
                     random_id.setLike(id[0])
                     
                     id[0] = int(random_id.getMultiRandom())
-                    if id[0] == user_id + 1: profile_click(root)
+                    if id[0] == user_id: profile_click(root)
                     
                     refresh = Label(root, image = refresh_img, borderwidth=0, highlightthickness=0)
                     refresh.place(x = 1095, y = 270)
@@ -305,7 +304,7 @@ def Profile_screen(user_id, status):
                     
                 def dislike_click():
                     id[0] = int(random_id.getMultiRandom())
-                    if id[0] == user_id + 1: profile_click(root)
+                    if id[0] == user_id: profile_click(root)
                     
                     refresh = Label(root, image = refresh_img, borderwidth=0, highlightthickness=0)
                     refresh.place(x = 1095, y = 270)
