@@ -13,4 +13,6 @@ def main():
             check.isMatch()
             chat.Chat_Screen()
             status = chat.return_status()
-main()
+
+if __name__ == "__main__":
+    main()
