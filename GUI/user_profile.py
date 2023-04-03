@@ -274,15 +274,15 @@ def Profile_screen(user_id, status):
             profile_button = Button(root, image = profile_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             profile_button.place(x = 5, y = 300)
                         
-            display(user_id)
-            show_image(user_id)
+            display(user_id - 1)
+            show_image(user_id - 1)
         case "matching":
-            random_id = Randomize(user_id + 1)
+            random_id = Randomize(user_id)
             id = [0]
             id[0] = int(random_id.getMultiRandom())
             matching_button = Button(root, image = matching_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             matching_button.place(x = 5, y = 500)
-            if id[0] != user_id + 1:
+            if id[0] != user_id:
                 display(id[0] - 1)
                 show_image(id[0] - 1)
                 
@@ -293,7 +293,7 @@ def Profile_screen(user_id, status):
                     random_id.setLike(id[0])
                     
                     id[0] = int(random_id.getMultiRandom())
-                    if id[0] == user_id + 1: profile_click(root)
+                    if id[0] == user_id: profile_click(root)
                     
                     refresh = Label(root, image = refresh_img, borderwidth=0, highlightthickness=0)
                     refresh.place(x = 1095, y = 270)
@@ -304,7 +304,7 @@ def Profile_screen(user_id, status):
                     
                 def dislike_click():
                     id[0] = int(random_id.getMultiRandom())
-                    if id[0] == user_id + 1: profile_click(root)
+                    if id[0] == user_id: profile_click(root)
                     
                     refresh = Label(root, image = refresh_img, borderwidth=0, highlightthickness=0)
                     refresh.place(x = 1095, y = 270)
