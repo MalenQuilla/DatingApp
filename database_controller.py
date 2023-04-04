@@ -77,6 +77,23 @@ def show_info():
         cursor.close()
         conn.close()
         
+def show_name():
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT User_name FROM User_Information")
+        rows = cursor.fetchall()
+ 
+        return(rows)
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
 def show_basics():
     try:
         conn = connect()
@@ -167,6 +184,23 @@ def show_liked(i):
         cursor.close()
         conn.close()
         
+def show_matched(user_id):        
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT Matched FROM User_match WHERE id = %s", (user_id,))
+        rows = cursor.fetchall()
+ 
+        return(rows)
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+
 def update_liked(new_liked, user_id):
     query = """ UPDATE User_match
                 SET Liked = %s

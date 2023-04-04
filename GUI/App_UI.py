@@ -5,7 +5,7 @@ import datetime
 from io import BytesIO
 from math import floor, ceil
 from PIL import Image, ImageTk
-from database_controller import show_info, show_basics, show_interests, show_photo
+from database_controller import show_info, show_basics, show_interests, show_photo, show_matched, show_name
 from Matching_Controller import Randomize, Match
 
 class User:
@@ -358,20 +358,30 @@ class User:
 
         # Person who chat with you 
         
-        who_chat_1 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        who_chat_1.place(x = 150, y = 300)    
+        matched_lists = show_matched(self.__user_id)[0]
+        matched_list = matched_lists[0].split(" ")
+        name_lists = show_name()
+        posy = 300
+        for i in matched_list:
+            name = name_lists[int(i) - 1][0]   
+    
+            who_chat = Button(self.__root, font=(self.__font, 19, "bold"), image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+            who_chat.place(x = 150, y = posy)  
+            who_chat.config(text= name, compound= "center", fg="#4E4E4E")
+            
+            posy += 150
+        
 
-
-        who_chat_2 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        who_chat_2.place(x = 150, y = 450) 
+        # who_chat_2 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+        # who_chat_2.place(x = 150, y = 450) 
     
 
-        who_chat_3 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        who_chat_3.place(x = 150, y = 600)   
+        # who_chat_3 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+        # who_chat_3.place(x = 150, y = 600)   
 
 
-        who_chat_4 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        who_chat_4.place(x = 150, y = 750)    
+        # who_chat_4 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+        # who_chat_4.place(x = 150, y = 750)    
         
         # OPEN IMAGE -- ICON -- SEND MESSAGE Button
         # open_image= Button(self.__root, image=open_image_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
