@@ -60,14 +60,14 @@ def show_account():
         cursor.close()
         conn.close()
         
-def show_info():
+def show_info(i):
     try:
         conn = connect()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM User_Information")
+        cursor.execute("SELECT User_name, User_dob, User_gender, User_location, User_bio FROM User_Information WHERE id = %s", (i,))
         rows = cursor.fetchall()
  
-        return(rows)
+        return(rows[0])
  
     except Error as e:
         print(e)
@@ -77,14 +77,14 @@ def show_info():
         cursor.close()
         conn.close()
         
-def show_name():
+def show_name(i):
     try:
         conn = connect()
         cursor = conn.cursor()
-        cursor.execute("SELECT User_name FROM User_Information")
+        cursor.execute("SELECT User_name FROM User_Information WHERE id = %s", (i,))
         rows = cursor.fetchall()
  
-        return(rows)
+        return(rows[0])
  
     except Error as e:
         print(e)
@@ -94,14 +94,14 @@ def show_name():
         cursor.close()
         conn.close()
         
-def show_basics():
+def show_basics(i):
     try:
         conn = connect()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM User_basics")
+        cursor.execute("SELECT Basics_height, Basics_weight, Basics_zodiac, Basics_education, Basics_workout, Basics_smoke, Basics_drink FROM User_basics WHERE id = %s", (i,))
         rows = cursor.fetchall()
  
-        return(rows)
+        return(rows[0])
  
     except Error as e:
         print(e)
@@ -111,14 +111,14 @@ def show_basics():
         cursor.close()
         conn.close()
         
-def show_interests():
+def show_interests(i):
     try:
         conn = connect()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM User_interests")
+        cursor.execute("SELECT interest1, interest2, interest3, interest4, interest5 FROM User_interests WHERE id = %s", (i,))
         rows = cursor.fetchall()
  
-        return(rows)
+        return(rows[0])
  
     except Error as e:
         print(e)
@@ -184,6 +184,23 @@ def show_liked(i):
         cursor.close()
         conn.close()
         
+def show_disliked(i):
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT Disliked FROM User_match WHERE id = %s", (i,))
+        rows = cursor.fetchall()
+ 
+        return(rows)
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
 def show_matched(user_id):        
     try:
         conn = connect()
@@ -204,6 +221,28 @@ def show_matched(user_id):
 def update_liked(new_liked, user_id):
     query = """ UPDATE User_match
                 SET Liked = %s
+                WHERE id = %s """
+ 
+    data = (new_liked, user_id)
+    try:
+        conn = connect()
+        
+        cursor = conn.cursor()
+        cursor.execute(query, data)
+        
+        conn.commit()
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+def update_disliked(new_liked, user_id):
+    query = """ UPDATE User_match
+                SET Disliked = %s
                 WHERE id = %s """
  
     data = (new_liked, user_id)
@@ -353,26 +392,26 @@ def insert_interest(in1, in2, in3, in4, in5):
         cursor.close()
         conn.close()
         
-def insert_interests_old(Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet):
-    query = "INSERT INTO User_basics(Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet) " \
-            "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-    args = (Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet)
+# def insert_interests_old(Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet):
+#     query = "INSERT INTO User_basics(Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet) " \
+#             "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+#     args = (Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet)
  
-    try:
+#     try:
  
-        conn = connect()
+#         conn = connect()
  
-        cursor = conn.cursor()
-        cursor.execute(query, args)
+#         cursor = conn.cursor()
+#         cursor.execute(query, args)
   
-        conn.commit()
-    except Error as error:
-        print(error)
+#         conn.commit()
+#     except Error as error:
+#         print(error)
  
-    finally:
-        # close connection
-        cursor.close()
-        conn.close()
+#     finally:
+#         # close connection
+#         cursor.close()
+#         conn.close()
       
         
 #insert Image
@@ -412,7 +451,7 @@ def show_photo(id):
         cursor.execute(query, data)
         rows = cursor.fetchall()
  
-        return(rows)
+        return(rows[0])
  
     except Error as e:
         print(e)
