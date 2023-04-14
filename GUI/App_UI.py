@@ -64,16 +64,13 @@ class User:
         change_img = PhotoImage(file="GUI/MAIN/match_img/button_in_match_img/swap.png")
         
         #----------------------------------------------------------------------------------------------------------------------------
-        infos = show_info()
-        basics = show_basics()
-        interestss = show_interests()
         
         def display(i):
             refresh = Label(self.__root, image = refresh_img, borderwidth=0, highlightthickness=0)
             refresh.place(x = 1095, y = 270)
             refresh.image = refresh_img
             #display info
-            info = infos[i]
+            info = show_info(i)
             name_data = info[0].split(' ')
             
             age_datas = info[1].split('-')
@@ -109,7 +106,7 @@ class User:
             
             #----------------------------------------------------------------------------------------------------------------------------
             #display basics
-            basic = basics[i]
+            basic = show_basics(i)
             
             height_data = basic[0]
             
@@ -149,7 +146,7 @@ class User:
                     
             #----------------------------------------------------------------------------------------------------------------------------
             #display interests
-            interests = interestss[i]
+            interests = show_interests(i)
             
             interest1 = PhotoImage(file="GUI/MAIN/match_img/interest_match_img/All_img/" + interests[0] + ".png")
             inter_img1 = Label(self.__root, image= interest1, borderwidth=0, highlightthickness=0)
@@ -193,7 +190,7 @@ class User:
                 ration = min(wid, hei)
                 return ration
             
-            imgs = show_photo(i + 1)[0]
+            imgs = show_photo(i)
             img = Image.open(BytesIO(imgs[self.__img_index]))
             wi, he = img.size 
             if wi < 585 or he < 796:
@@ -235,7 +232,7 @@ class User:
                 ration = min(wid, hei)
                 return ration
             
-            imgs = show_photo(i + 1)[0]
+            imgs = show_photo(i)
             img = Image.open(BytesIO(imgs[self.__img_index]))
             wi, he = img.size 
             if wi < 585 or he < 796:
@@ -277,34 +274,35 @@ class User:
                 profile_button = Button(self.__root, image = profile_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
                 profile_button.place(x = 5, y = 300)
                             
-                display(self.__user_id - 1)
-                show_image(self.__user_id - 1)
+                display(self.__user_id)
+                show_image(self.__user_id)
             case "matching":
                 random_id = Randomize(self.__user_id)
-                id = [0]
-                id[0] = int(random_id.getMultiRandom())
+                self.__match_id = int(random_id.getMultiRandom())
+                
                 matching_button = Button(self.__root, image = matching_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
                 matching_button.place(x = 5, y = 500)
-                if id[0] != self.__user_id:
-                    display(id[0] - 1)
-                    show_image(id[0] - 1)
+                if self.__match_id != self.__user_id:
+                    display(self.__match_id)
+                    show_image(self.__match_id)
 
                     
                     def like_click():
-                        random_id.setLike(id[0])
+                        random_id.setLike(self.__match_id)
                         
-                        id[0] = int(random_id.getMultiRandom())
-                        if id[0] == self.__user_id: self.profile_click()
+                        self.__match_id = int(random_id.getMultiRandom())
+                        if self.__match_id == self.__user_id: self.profile_click()
                                                
-                        display(id[0] - 1)
-                        show_image(id[0] - 1)
+                        display(self.__match_id)
+                        show_image(self.__match_id)
                         
                     def dislike_click():
-                        id[0] = int(random_id.getMultiRandom())
-                        if id[0] == self.__user_id: self.profile_click()
+                        random_id.setDisliked(self.__match_id)
+                        self.__match_id= int(random_id.getMultiRandom())
+                        if self.__match_id == self.__user_id: self.profile_click()
                         
-                        display(id[0] - 1)
-                        show_image(id[0] - 1)
+                        display(self.__match_id)
+                        show_image(self.__match_id)
                     
                     like = Button(self.__root, image=like_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(like_click))
                     like.place(x = 900, y = 450)
@@ -360,11 +358,10 @@ class User:
         
         matched_lists = show_matched(self.__user_id)[0]
         matched_list = matched_lists[0].split(" ")
-        name_lists = show_name()
         posy = 300
         for i in matched_list:
-            name = name_lists[int(i) - 1][0]   
-    
+            name = show_name(i)
+            
             who_chat = Button(self.__root, font=(self.__font, 19, "bold"), image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
             who_chat.place(x = 150, y = posy)  
             who_chat.config(text= name, compound= "center", fg="#4E4E4E")

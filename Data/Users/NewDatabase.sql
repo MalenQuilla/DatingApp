@@ -3,11 +3,13 @@ CREATE database IF NOT EXISTS DatingApp;
 USE DatingApp;
 
 CREATE TABLE User_information (
+id INT NOT NULL AUTO_INCREMENT,
 User_name TEXT DEFAULT NULL,
 User_dob TEXT DEFAULT NULL,
 User_gender TEXT DEFAULT NULL,
 User_location TEXT DEFAULT NULL,
-User_bio TEXT DEFAULT NULL
+User_bio TEXT DEFAULT NULL,
+PRIMARY KEY (id)
 );
 
 CREATE TABLE User_account (
@@ -18,21 +20,25 @@ PRIMARY KEY (User_id)
 );
 
 CREATE TABLE User_basics (
+id INT NOT NULL AUTO_INCREMENT,
 Basics_height TEXT DEFAULT NULL,
 Basics_weight TEXT DEFAULT NULL,
 Basics_zodiac TEXT DEFAULT NULL,
 Basics_education TEXT DEFAULT NULL,
 Basics_workout TEXT DEFAULT NULL,
 Basics_smoke TEXT DEFAULT NULL,
-Basics_drink TEXT DEFAULT NULL
+Basics_drink TEXT DEFAULT NULL,
+PRIMARY KEY (id)
 );
 
 CREATE TABLE User_interests (
+id INT NOT NULL AUTO_INCREMENT,
 interest1 TEXT DEFAULT NULL,
 interest2 TEXT DEFAULT NULL,
 interest3 TEXT DEFAULT NULL,
 interest4 TEXT DEFAULT NULL,
-interest5 TEXT DEFAULT NULL
+interest5 TEXT DEFAULT NULL,
+PRIMARY KEY (id)
 );
 
 CREATE TABLE User_photo (
