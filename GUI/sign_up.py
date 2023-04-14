@@ -154,6 +154,7 @@ class Sign_up:
         next.Basic_Infor()
 
 
+    #Create user informations
     def Infor_screen(self):
         background_img = tk.PhotoImage(file = "GUI/sign_up_img/profile_information_img/new_bg.png")
         continue_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/continue.png")

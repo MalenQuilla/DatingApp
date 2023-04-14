@@ -1,5 +1,6 @@
 from functools import partial
 from tkinter import *
+from tkinter import ttk
 from tkextrafont import Font
 import datetime
 from io import BytesIO
@@ -40,6 +41,8 @@ class User:
         isMatch.isMatch()
         self.Chat_Screen()
         
+        
+    #Show profile method
     def Profile_screen(self):
         background = PhotoImage(file="GUI/MAIN/match_img/background.png")
 
@@ -312,11 +315,14 @@ class User:
         
         self.__root.mainloop()
 
+
+    #Create chat screen
     def Chat_Screen(self):        
         background = PhotoImage(file="GUI/MAIN/chat_img/chat_background.png")
     
         label_background = Label(self.__root, image = background)
         label_background.place(x = 0, y = 0)
+        
         #-------------------------------------------------------------------------------------------------------------------------------------------------
         # Taskbar no click -- img
         profile_img = PhotoImage(file="GUI/MAIN/chat_img/task_bar_img/taskbar/open_profile_button.png")
@@ -349,24 +355,61 @@ class User:
 
         chat_click =  Button(self.__root, image=chat_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
         chat_click.place(x = 5, y = 700) 
+        
+        #--------------------------------------------------------------------------------------------------------------------------------------------------
+        # Create notebook to display user conversation
+        
+        # Create a Canvas widget with a scrollbar
+        canvas = Canvas(self.__root, height= 820, width= 420, bg = "#FFFFFF", borderwidth=0, highlightthickness=0)
+        scrollbar = Scrollbar(self.__root, orient='vertical', command=canvas.yview)
+        scrollbar.pack(side='right', fill='y')
+        canvas.config(yscrollcommand=scrollbar.set)
+        #canvas.pack(side='left', fill='both', expand=True)
+        canvas.place(x = 160, y = 210)
+
+        # Create a frame inside the canvas to hold the content
+        inner_frame = Frame(canvas)
+        canvas.create_window((0,0), window=inner_frame, anchor='nw')
+
+        # Bind mousewheel events to the canvas for scrolling
+        def on_mousewheel(event):
+            canvas.yview_scroll(int(-1*(event.delta/120)), 'units')
+
+        canvas.bind_all('<MouseWheel>', on_mousewheel)
+        
+        # Person who chat with you 
+        try:
+            matched_lists = show_matched(self.__user_id)[0]
+            matched_list = matched_lists[0].split(" ")
+            
+            for i in range(len(matched_list)):
+                name = show_name(matched_list[i])[0]
+                
+                who_chat = Button(inner_frame, font=(self.__font, 19, "bold"), image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+                who_chat.grid(row= i, column= 0)
+                who_chat.config(text= name, compound= "center", fg="#4E4E4E")
+                       
+        except IndexError:
+            pass
+        
+        if len(matched_list) > 7:
+            # Update the geometry of the inner frame and canvas
+            inner_frame.update_idletasks()
+            canvas.config(scrollregion=canvas.bbox('all'))
+        else:
+            # Calculate the height of the inner frame
+            inner_frame.update_idletasks()
+            frame_height = inner_frame.winfo_height()
+
+            # Set the height of the canvas
+            canvas.config(scrollregion=canvas.bbox('all'), height=frame_height)
+                    
         #--------------------------------------------------------------------------------------------------------------------------------------------------
         # Face user chat
         face_user_chat = Label(self.__root, image=face_user_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
         face_user_chat.place(x = 640, y = 225)   
 
-        # Person who chat with you 
         
-        matched_lists = show_matched(self.__user_id)[0]
-        matched_list = matched_lists[0].split(" ")
-        posy = 300
-        for i in matched_list:
-            name = show_name(i)
-            
-            who_chat = Button(self.__root, font=(self.__font, 19, "bold"), image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-            who_chat.place(x = 150, y = posy)  
-            who_chat.config(text= name, compound= "center", fg="#4E4E4E")
-            
-            posy += 150
         
 
         # who_chat_2 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)

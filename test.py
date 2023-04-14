@@ -5,6 +5,7 @@ class ChatGUI:
     def __init__(self):
         self.window = tk.Tk()
         self.window.title("Chat App")
+        self.window.geometry('1280x720')
         self.window.resizable(width= False, height= False)
 
         self.num_lines = 1
