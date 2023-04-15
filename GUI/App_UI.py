@@ -309,12 +309,12 @@ class User:
 
         #--------------------------------------------------------------------------------------------------------------------------------------------------
         #SEND IMAGE -- ICON -- MESSAGE img
-        # open_image_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/open_image.png")
-        # open_icon_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/open_icon.png")    
+        open_image_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/open_image.png")
+        open_icon_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/open_icon.png")    
         send_message_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/send_message.png")
 
         #--------------------------------------------------------------------------------------------------------------------------------------------------
-        # Taskbar no click ---- BUTTON
+        # Taskbar
         exit_button = Button(self.__root, image = exit_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(self.exit_click))
         exit_button.place(x = 5, y = 980)
         
@@ -328,9 +328,8 @@ class User:
         chat_click.place(x = 5, y = 700) 
         
         #--------------------------------------------------------------------------------------------------------------------------------------------------
-        # Create notebook to display user conversation
+        # Create a small scrollable window to display user conversation
         
-        # Create a Canvas widget with a scrollbar
         canvas = Canvas(self.__root, height= 820, width= 370, bg = "#FFFFFF", borderwidth=0, highlightthickness=0)
         scrollbar = Scrollbar(self.__root, orient='vertical', command=canvas.yview)
         scrollbar.config(width = 0, highlightthickness=0) #make the scroll bar invisible
@@ -442,28 +441,14 @@ class User:
         #--------------------------------------------------------------------------------------------------------------------------------------------------
         # Face user chat
         # face_user_chat = Label(self.__root, image=face_user_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        # face_user_chat.place(x = 640, y = 225)   
-
-        
-        
-
-        # who_chat_2 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        # who_chat_2.place(x = 150, y = 450) 
-    
-
-        # who_chat_3 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        # who_chat_3.place(x = 150, y = 600)   
-
-
-        # who_chat_4 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        # who_chat_4.place(x = 150, y = 750)    
+        # face_user_chat.place(x = 640, y = 225)    
         
         # OPEN IMAGE -- ICON -- SEND MESSAGE Button
-        # open_image= Button(self.__root, image=open_image_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        # open_image.place(x = 1450, y = 930)    
+        open_image= Button(self.__root, image=open_image_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+        open_image.place(x = 1450, y = 930)    
 
-        # open_icon = Button(self.__root, image=open_icon_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)  
-        # open_icon.place(x = 1570, y = 930)    
+        open_icon = Button(self.__root, image=open_icon_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)  
+        open_icon.place(x = 1570, y = 930)    
 
         send_message = Button(self.__root, image=send_message_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
         send_message.place(x = 1680, y = 920)    
