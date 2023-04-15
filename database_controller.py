@@ -489,7 +489,7 @@ def get_invalid_id():
         conn.close()
 
 def delete_invalid_id():       
-    invalid_id = get_invalid_id() 
+    invalid_id = get_invalid_id()  
     
     try:
         conn = connect()

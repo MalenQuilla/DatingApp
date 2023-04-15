@@ -246,6 +246,10 @@ class User:
                 profile_button = Button(self.__root, image = profile_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
                 profile_button.place(x = 5, y = 300)
                             
+                edit_prof_img = PhotoImage(file = "GUI/MAIN/match_img/edit_profile_img.png")    
+                edit_profile_button = Button(self.__root, image = edit_prof_img , bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+                edit_profile_button.place(x = 900, y = 450)       
+                
                 display(self.__user_id)
                 show_image(self.__user_id)
             case "matching":
