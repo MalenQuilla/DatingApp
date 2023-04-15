@@ -3,7 +3,7 @@ from tkinter import *
 from functools import partial
 from database_controller import show_account, insert_account, insert_matching, insert_info
 from GUI import secure
-from GUI import basics_interests, Drag_window
+from GUI import basics_interests
 
 class Sign_up:
     def __init__(self):
