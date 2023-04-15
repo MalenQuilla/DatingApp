@@ -1,6 +1,7 @@
 import tkinter as tk
 from functools import partial
 from tkinter import *
+from GUI import login
 
 
 class Letter:
@@ -13,6 +14,8 @@ class Letter:
         
     def next_click(self):
         self.__root.destroy()
+        run = login.Login()
+        run.login_screen()
 
     def Letter_Thanks_Screen(self):
         background = tk.PhotoImage(file="GUI/letter_thanks_img/background.png")

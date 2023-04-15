@@ -77,6 +77,23 @@ def show_info(i):
         cursor.close()
         conn.close()
         
+def show_new_added_dob():
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT User_dob FROM User_information WHERE id = (SELECT MAX(id) FROM User_information);")
+        rows = cursor.fetchall()
+ 
+        return(rows[0][0])
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()       
+
 def show_name(i):
     try:
         conn = connect()

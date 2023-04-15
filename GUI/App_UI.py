@@ -327,22 +327,42 @@ class User:
         # Create notebook to display user conversation
         
         # Create a Canvas widget with a scrollbar
-        canvas = Canvas(self.__root, height= 820, width= 420, bg = "#FFFFFF", borderwidth=0, highlightthickness=0)
+        canvas = Canvas(self.__root, height= 820, width= 370, bg = "#FFFFFF", borderwidth=0, highlightthickness=0)
         scrollbar = Scrollbar(self.__root, orient='vertical', command=canvas.yview)
+        scrollbar.config(width = 0, highlightthickness=0) #make the scroll bar invisible
         scrollbar.pack(side='right', fill='y')
         canvas.config(yscrollcommand=scrollbar.set)
-        #canvas.pack(side='left', fill='both', expand=True)
-        canvas.place(x = 160, y = 210)
+        canvas.place(x = 190, y = 215)
 
         # Create a frame inside the canvas to hold the content
         inner_frame = Frame(canvas)
         canvas.create_window((0,0), window=inner_frame, anchor='nw')
 
-        # Bind mousewheel events to the canvas for scrolling
+        # Bind the MouseWheel event to the canvas
         def on_mousewheel(event):
             canvas.yview_scroll(int(-1*(event.delta/120)), 'units')
 
-        canvas.bind_all('<MouseWheel>', on_mousewheel)
+        # Bind the MouseEnter and MouseLeave events of the inner frame
+        is_mouse_inside = False
+        def enable_scroll(event):
+            global is_mouse_inside
+            is_mouse_inside = True
+            canvas.bind_all('<MouseWheel>', on_mousewheel)
+        def disable_scroll(event):
+            global is_mouse_inside
+            is_mouse_inside = False
+            canvas.unbind_all('<MouseWheel>')
+
+        inner_frame.bind('<Enter>', enable_scroll)
+        inner_frame.bind('<Leave>', disable_scroll)
+
+        # Check if the mouse is inside the inner frame when scrolling
+        def check_scroll_region(event):
+            if is_mouse_inside:
+                canvas.yview_scroll(int(-1*(event.delta/120)), 'units')
+
+        # Bind the MouseWheel event to the canvas and the inner frame
+        canvas.bind('<MouseWheel>', check_scroll_region)
         
         # Person who chat with you 
         try:
@@ -385,20 +405,20 @@ class User:
                 img_resized = img_resized.crop([left, upper, right, lower])
                 avatar_photo = ImageTk.PhotoImage(img_resized) 
                 
-                #Person who chat with you
-                who_chat_img = PhotoImage(file= "GUI/MAIN/chat_img/who_chat_img.png")
-                avatar_img = PhotoImage(file="GUI/MAIN/chat_img/face_user_chat_img.png")
-
+                
                 # Create user button
                 style = ttk.Style()
-                style.configure('Modern.TButton', width= 370, height= 114, foreground='#4E4E4E', background='#00bfff', font=(self.__font, 19, "bold"))
-                
-                who_chat = ttk.Button(inner_frame, text= name, image= avatar_photo)
-                who_chat.grid(row= i, column= 0)
-                who_chat.config(style = 'Modern.TButton')
+                style.configure('Modern.TButton', foreground= '#4E4E4E', maxwidth= 370, maxheight= 114, font=(self.__font, 19, "bold"), anchor= "w")
+                style.map('Modern.TButton',
+                        foreground=[('active', '#FBA2D0'), ('focus', '#FBA2D0')],
+                        background=[('active', '#FFA270'), ('focus', '#FFA270')]
+                )
+
+                who_chat = ttk.Button(inner_frame, text= name, image=avatar_photo, compound= "left")
+                who_chat.grid(row=i, column=0, sticky="nsew")
+                who_chat.config(style='Modern.TButton')
                 who_chat.image = avatar_photo
-                who_chat.text = name
-                       
+                                       
         except IndexError:
             pass
         
