@@ -490,7 +490,7 @@ def get_invalid_id():
 
 def delete_invalid_id():       
     invalid_id = get_invalid_id() 
-    print(invalid_id)
+    
     try:
         conn = connect()
         cursor = conn.cursor()
@@ -498,7 +498,7 @@ def delete_invalid_id():
         cursor.execute("DELETE FROM User_account WHERE User_id = %s", (invalid_id,))
         cursor.execute("DELETE FROM User_information WHERE id = %s", (invalid_id,))
         cursor.execute("DELETE FROM User_basics WHERE id = %s", (invalid_id,))
-        cursor.execute("DELETE FROM User_interests WHERE id = %s", (invalid_id,))
+        cursor.execute("DELETE FROM User_interests WHERE id = %s", (invalid_id,)) 
         cursor.execute("DELETE FROM User_photo WHERE id = %s", (invalid_id,))
         cursor.execute("DELETE FROM User_match WHERE id = %s", (invalid_id,))
         
