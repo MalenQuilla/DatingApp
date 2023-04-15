@@ -176,11 +176,15 @@ class User:
             inter_img5.place(x = 1321, y = 870)  
             inter_img5.image = interest5
             
+            #change image button
+            change = Button(self.__root, image=change_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(change_image, i))
+            change.place(x = 900, y = 610)
+            
         #----------------------------------------------------------------------------------------------------------------------------
-        #display photos  
+        self.__img_index = 0
+        #display photos
         def show_image(i):  
-            self.__img_index = 0 
-        
+             
             def resize_img(width, height):
                 wid = floor(width/585)
                 hei = floor(height/796)
@@ -215,48 +219,13 @@ class User:
             Photo = Label(self.__root, image= photo, borderwidth=0, highlightthickness=0)
             Photo.place(x = 305, y = 226)
             Photo.image = photo
-            
-            change = Button(self.__root, image=change_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(change_image, i))
-            change.place(x = 900, y = 610)
         
+        #display photos when click the change image button
         def change_image(i):    
             self.__img_index += 1
             if self.__img_index == 3: self.__img_index = 0      
                     
-            def resize_img(width, height):
-                wid = floor(width/585)
-                hei = floor(height/796)
-                ration = min(wid, hei)
-                return ration
-            
-            def resize_img2(width, height):
-                wid = ceil(585/width)
-                hei = ceil(796/height)
-                ration = min(wid, hei)
-                return ration
-            
-            imgs = show_photo(i)
-            img = Image.open(BytesIO(imgs[self.__img_index]))
-            wi, he = img.size 
-            if wi < 585 or he < 796:
-                ration = resize_img2(wi, he)
-                new_wid = int(wi*ration)
-                new_hei = int(he*ration)
-            else:
-                ration = resize_img(wi, he)
-                new_wid = int(wi/ration)
-                new_hei = int(he/ration)
-            img_resized = img.resize((new_wid, new_hei))
-            left = (new_wid - 585)/2
-            right = new_wid - (new_wid - 585)/2
-            upper = (new_hei - 796)/2
-            lower = new_hei - (new_hei - 796)/2
-            img_resized = img_resized.crop([left, upper, right, lower])
-            
-            photo = ImageTk.PhotoImage(img_resized)        
-            Photo = Label(self.__root, image= photo, borderwidth=0, highlightthickness=0)
-            Photo.place(x = 305, y = 226)
-            Photo.image = photo    
+            show_image(i) 
         
         #----------------------------------------------------------------------------------------------------------------------------
         #display button
@@ -287,6 +256,7 @@ class User:
                 matching_button.place(x = 5, y = 500)
                 if self.__match_id != self.__user_id:
                     display(self.__match_id)
+                    self.__img_index = 0
                     show_image(self.__match_id)
 
                     
@@ -297,6 +267,7 @@ class User:
                         if self.__match_id == self.__user_id: self.profile_click()
                                                
                         display(self.__match_id)
+                        self.__img_index = 0
                         show_image(self.__match_id)
                         
                     def dislike_click():
@@ -305,6 +276,7 @@ class User:
                         if self.__match_id == self.__user_id: self.profile_click()
                         
                         display(self.__match_id)
+                        self.__img_index = 0
                         show_image(self.__match_id)
                     
                     like = Button(self.__root, image=like_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(like_click))
@@ -336,11 +308,6 @@ class User:
         # open_image_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/open_image.png")
         # open_icon_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/open_icon.png")    
         send_message_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/send_message.png")
-
-
-        #Person who chat with you
-        who_chat_img = PhotoImage(file="GUI/MAIN/chat_img/who_chat_img.png")
-        face_user_chat_img = PhotoImage(file="GUI/MAIN/chat_img/face_user_chat_img.png")
 
         #--------------------------------------------------------------------------------------------------------------------------------------------------
         # Taskbar no click ---- BUTTON
@@ -383,14 +350,58 @@ class User:
             matched_list = matched_lists[0].split(" ")
             
             for i in range(len(matched_list)):
+                # Get information
                 name = show_name(matched_list[i])[0]
+                avatar = Image.open(BytesIO(show_photo(matched_list[i])[0]))
                 
-                who_chat = Button(inner_frame, font=(self.__font, 19, "bold"), image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+                
+                # Resize the avatar image as needed
+                def resize_img(width, height):
+                    wid = floor(width/100)
+                    hei = floor(height/100)
+                    ration = min(wid, hei)
+                    return ration
+                
+                def resize_img2(width, height):
+                    wid = ceil(100/width)
+                    hei = ceil(100/height)
+                    ration = min(wid, hei)
+                    return ration
+                
+                wi, he = avatar.size 
+                if wi < 100 or he < 100:
+                    ration = resize_img2(wi, he)
+                    new_wid = int(wi*ration)
+                    new_hei = int(he*ration)
+                else:
+                    ration = resize_img(wi, he)
+                    new_wid = int(wi/ration)
+                    new_hei = int(he/ration)
+                img_resized = avatar.resize((new_wid, new_hei))
+                left = (new_wid - 100)/2
+                right = new_wid - (new_wid - 100)/2
+                upper = (new_hei - 100)/2
+                lower = new_hei - (new_hei - 100)/2
+                img_resized = img_resized.crop([left, upper, right, lower])
+                avatar_photo = ImageTk.PhotoImage(img_resized) 
+                
+                #Person who chat with you
+                who_chat_img = PhotoImage(file= "GUI/MAIN/chat_img/who_chat_img.png")
+                avatar_img = PhotoImage(file="GUI/MAIN/chat_img/face_user_chat_img.png")
+
+                # Create user button
+                style = ttk.Style()
+                style.configure('Modern.TButton', width= 370, height= 114, foreground='#4E4E4E', background='#00bfff', font=(self.__font, 19, "bold"))
+                
+                who_chat = ttk.Button(inner_frame, text= name, image= avatar_photo)
                 who_chat.grid(row= i, column= 0)
-                who_chat.config(text= name, compound= "center", fg="#4E4E4E")
+                who_chat.config(style = 'Modern.TButton')
+                who_chat.image = avatar_photo
+                who_chat.text = name
                        
         except IndexError:
             pass
+        
         
         if len(matched_list) > 7:
             # Update the geometry of the inner frame and canvas
@@ -406,8 +417,8 @@ class User:
                     
         #--------------------------------------------------------------------------------------------------------------------------------------------------
         # Face user chat
-        face_user_chat = Label(self.__root, image=face_user_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        face_user_chat.place(x = 640, y = 225)   
+        # face_user_chat = Label(self.__root, image=face_user_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+        # face_user_chat.place(x = 640, y = 225)   
 
         
         
