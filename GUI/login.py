@@ -14,6 +14,13 @@ class Login:
         self.__root.geometry('900x500')
         self.__root.resizable(width=False, height=False)
         
+        def on_closing():
+            if tk.messagebox.askokcancel("Quit", "Do you want to quit?"):
+                self.__root.destroy()
+                self.__status = "exit"
+
+        self.__root.protocol("WM_DELETE_WINDOW", on_closing)
+                
     def get_user_id(self):
         return self.__user_id
     
@@ -26,10 +33,10 @@ class Login:
         accounts = show_account()
         for account in accounts:
             if un == account[1] and pw == secure.decode(account[2]):
-                #print("login success")
+                print("login success")
                 isSuccess = True
                 self.__user_id = account[0]
-                self.__status = "done"
+                self.__status = "login success"
                 self.__root.destroy()
             else:
                 isSuccess = False
