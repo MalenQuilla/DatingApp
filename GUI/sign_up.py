@@ -3,7 +3,7 @@ from tkinter import *
 from functools import partial
 from database_controller import show_account, insert_account, insert_matching, insert_info
 from GUI import secure
-from GUI import basics_interests
+from GUI import basics_interests, Drag_window
 
 class Sign_up:
     def __init__(self):
@@ -12,7 +12,7 @@ class Sign_up:
         self.__root.geometry('900x500')
         self.__root.resizable(width=False, height=False)
         
-        
+
     def continue_click(self, username, password, confirm_password):
         un = username.get()
         pw = password.get()
