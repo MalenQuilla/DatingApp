@@ -519,3 +519,24 @@ def delete_invalid_id():
         cursor.close()
         conn.close()
         
+        
+#------------------------------------------------------------------------------------------------------
+#ADMIN MODE
+
+#get password with username
+def get_password_w_username(username):
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT Account_password FROM User_account WHERE Account_username = %s", (username,))
+        rows = cursor.fetchall()
+        
+        return(rows[0][0])
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()

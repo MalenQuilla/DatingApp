@@ -1,6 +1,6 @@
 import tkinter as tk
 from functools import partial
-from database_controller import show_account
+from database_controller import show_account, get_password_w_username
 from GUI import sign_up
 from GUI import secure
 
@@ -10,7 +10,7 @@ class Login:
         self.__status = "none"
         
         self.__root = tk.Tk()  # Create new window
-        self.__root.title('Sign In')
+        
         self.__root.geometry('900x500')
         self.__root.resizable(width=False, height=False)
         
@@ -52,12 +52,59 @@ class Login:
         self.__root.destroy()
         sign_up.Sign_up().sign_up_screen()
 
-    def forgot_password_click():
-        # Registration processing
-        pass
+    def forgot_password_click(self):
+        if tk.messagebox.askokcancel("Forgot password", "Please contact admin! Enter admin mode?"):
+            self.__root.destroy()
+            self.__init__()   
+            self.__root.title("ADMIN MODE") 
+                        
+            label = tk.Label(self.__root, text= "Enter andmin password: ", font= ("Arial", 20))
+            label.place(relx=0.5, rely=0.40, anchor='center')
+            
+            password = tk.Entry(self.__root, font= ("Arial", 20), show= "*")
+            password.place(relx=0.5, rely=0.5, anchor='center')
+
+            
+            def confirm_click():
+                if password.get() != secure.decode("00 0 0 00 00 000 0 0 00 0 0 00 00 00 0 0 00 00 0 00 00 00 0 00 00 0 0 00 00 0 0 0 00 000 0 00 00 0 0 0 00 0 0 0 00 0 0 00 00 0 0 00 00 0"):
+                    tk.messagebox.showinfo("", "Wrong password!!!")
+                    self.__root.destroy()
+                else:
+                    label.destroy()
+                    password.destroy()
+                    confirm.destroy()
+                    
+                    new_label = tk.Label(self.__root, text= "Enter username: ", font= ("Arial", 20))
+                    new_label.place(relx=0.5, rely=0.40, anchor='center')
+                    
+                    username = tk.Entry(self.__root, font= ("Arial", 20))
+                    username.place(relx=0.5, rely=0.5, anchor='center')
+                    
+                    def confirm2_click():     
+                        try:                  
+                            un = username.get()
+                            password = "password: " + secure.decode(get_password_w_username(un))
+                        except IndexError:
+                            password = "unknow username"
+                        
+                        show_pass = tk.Label(self.__root, text= " "*1000 + password + " "*1000, font= ("Arial", 20))
+                        show_pass.place(relx=0.5, rely=0.30, anchor='center')
+                        
+                    
+                    new_confirm = tk.Button(self.__root, text = "CONFIRM", font= ("Arial", 20), command= partial(confirm2_click))
+                    new_confirm.place(relx=0.5, rely=0.60, anchor='center')
+              
+                    
+            confirm = tk.Button(self.__root, text = "CONFIRM", font= ("Arial", 20), command= partial(confirm_click))
+            confirm.place(relx=0.5, rely=0.60, anchor='center')
+                        
+            self.__root.mainloop()  
+            
 
     def login_screen(self):
-
+        
+        self.__root.title('Sign In')
+        
         background = tk.PhotoImage(file="GUI/login_img/Background.png")                 # Export Background image from available photo library
         sign_up = tk.PhotoImage(file="GUI/login_img/Sign_up_button.png")                     # Export Sign image from available photo library
         confirm = tk.PhotoImage(file="GUI/login_img/Confirm_button.png")                     # Export Confirm image from available photo library
