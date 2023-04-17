@@ -2,7 +2,7 @@ import tkinter as tk
 import textwrap
 from functools import partial
 from tkinter import *
-from database_controller import show_info, insert_baiscs, insert_interest
+from database_controller import show_info, insert_baiscs, insert_interest, show_new_added_dob
 from GUI import upload_images
 
 class BasicsAndInterests:
@@ -359,9 +359,7 @@ class BasicsAndInterests:
         #---------------------------------------------------------------------------------------------------------------------------------
         
         #set zodiac
-        infos = show_info()
-        info = infos[-1]
-        dob = info[1]
+        dob = show_new_added_dob()
         components = dob.split('-')
         year, month, day = [int(item) for item in components]
         match month:

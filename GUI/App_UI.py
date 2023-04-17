@@ -1,5 +1,6 @@
 from functools import partial
 from tkinter import *
+from tkinter import ttk
 from tkextrafont import Font
 import datetime
 from io import BytesIO
@@ -40,6 +41,8 @@ class User:
         isMatch.isMatch()
         self.Chat_Screen()
         
+        
+    #Show profile method
     def Profile_screen(self):
         background = PhotoImage(file="GUI/MAIN/match_img/background.png")
 
@@ -173,11 +176,15 @@ class User:
             inter_img5.place(x = 1321, y = 870)  
             inter_img5.image = interest5
             
+            #change image button
+            change = Button(self.__root, image=change_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(change_image, i))
+            change.place(x = 900, y = 610)
+            
         #----------------------------------------------------------------------------------------------------------------------------
-        #display photos  
+        self.__img_index = 0
+        #display photos
         def show_image(i):  
-            self.__img_index = 0 
-        
+             
             def resize_img(width, height):
                 wid = floor(width/585)
                 hei = floor(height/796)
@@ -212,48 +219,13 @@ class User:
             Photo = Label(self.__root, image= photo, borderwidth=0, highlightthickness=0)
             Photo.place(x = 305, y = 226)
             Photo.image = photo
-            
-            change = Button(self.__root, image=change_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(change_image, i))
-            change.place(x = 900, y = 610)
         
+        #display photos when click the change image button
         def change_image(i):    
             self.__img_index += 1
             if self.__img_index == 3: self.__img_index = 0      
                     
-            def resize_img(width, height):
-                wid = floor(width/585)
-                hei = floor(height/796)
-                ration = min(wid, hei)
-                return ration
-            
-            def resize_img2(width, height):
-                wid = ceil(585/width)
-                hei = ceil(796/height)
-                ration = min(wid, hei)
-                return ration
-            
-            imgs = show_photo(i)
-            img = Image.open(BytesIO(imgs[self.__img_index]))
-            wi, he = img.size 
-            if wi < 585 or he < 796:
-                ration = resize_img2(wi, he)
-                new_wid = int(wi*ration)
-                new_hei = int(he*ration)
-            else:
-                ration = resize_img(wi, he)
-                new_wid = int(wi/ration)
-                new_hei = int(he/ration)
-            img_resized = img.resize((new_wid, new_hei))
-            left = (new_wid - 585)/2
-            right = new_wid - (new_wid - 585)/2
-            upper = (new_hei - 796)/2
-            lower = new_hei - (new_hei - 796)/2
-            img_resized = img_resized.crop([left, upper, right, lower])
-            
-            photo = ImageTk.PhotoImage(img_resized)        
-            Photo = Label(self.__root, image= photo, borderwidth=0, highlightthickness=0)
-            Photo.place(x = 305, y = 226)
-            Photo.image = photo    
+            show_image(i) 
         
         #----------------------------------------------------------------------------------------------------------------------------
         #display button
@@ -274,6 +246,10 @@ class User:
                 profile_button = Button(self.__root, image = profile_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
                 profile_button.place(x = 5, y = 300)
                             
+                edit_prof_img = PhotoImage(file = "GUI/MAIN/match_img/edit_profile_img.png")    
+                edit_profile_button = Button(self.__root, image = edit_prof_img , bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+                edit_profile_button.place(x = 900, y = 450)       
+                
                 display(self.__user_id)
                 show_image(self.__user_id)
             case "matching":
@@ -284,6 +260,7 @@ class User:
                 matching_button.place(x = 5, y = 500)
                 if self.__match_id != self.__user_id:
                     display(self.__match_id)
+                    self.__img_index = 0
                     show_image(self.__match_id)
 
                     
@@ -294,6 +271,7 @@ class User:
                         if self.__match_id == self.__user_id: self.profile_click()
                                                
                         display(self.__match_id)
+                        self.__img_index = 0
                         show_image(self.__match_id)
                         
                     def dislike_click():
@@ -302,6 +280,7 @@ class User:
                         if self.__match_id == self.__user_id: self.profile_click()
                         
                         display(self.__match_id)
+                        self.__img_index = 0
                         show_image(self.__match_id)
                     
                     like = Button(self.__root, image=like_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(like_click))
@@ -312,11 +291,14 @@ class User:
         
         self.__root.mainloop()
 
+
+    #Create chat screen
     def Chat_Screen(self):        
         background = PhotoImage(file="GUI/MAIN/chat_img/chat_background.png")
     
         label_background = Label(self.__root, image = background)
         label_background.place(x = 0, y = 0)
+        
         #-------------------------------------------------------------------------------------------------------------------------------------------------
         # Taskbar no click -- img
         profile_img = PhotoImage(file="GUI/MAIN/chat_img/task_bar_img/taskbar/open_profile_button.png")
@@ -327,17 +309,12 @@ class User:
 
         #--------------------------------------------------------------------------------------------------------------------------------------------------
         #SEND IMAGE -- ICON -- MESSAGE img
-        # open_image_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/open_image.png")
-        # open_icon_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/open_icon.png")    
+        open_image_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/open_image.png")
+        open_icon_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/open_icon.png")    
         send_message_img = PhotoImage(file="GUI/MAIN/chat_img/image_icon_send_img/send_message.png")
 
-
-        #Person who chat with you
-        who_chat_img = PhotoImage(file="GUI/MAIN/chat_img/who_chat_img.png")
-        face_user_chat_img = PhotoImage(file="GUI/MAIN/chat_img/face_user_chat_img.png")
-
         #--------------------------------------------------------------------------------------------------------------------------------------------------
-        # Taskbar no click ---- BUTTON
+        # Taskbar
         exit_button = Button(self.__root, image = exit_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0, command= partial(self.exit_click))
         exit_button.place(x = 5, y = 980)
         
@@ -349,43 +326,129 @@ class User:
 
         chat_click =  Button(self.__root, image=chat_click_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
         chat_click.place(x = 5, y = 700) 
+        
+        #--------------------------------------------------------------------------------------------------------------------------------------------------
+        # Create a small scrollable window to display user conversation
+        
+        canvas = Canvas(self.__root, height= 820, width= 370, bg = "#FFFFFF", borderwidth=0, highlightthickness=0)
+        scrollbar = Scrollbar(self.__root, orient='vertical', command=canvas.yview)
+        scrollbar.config(width = 0, highlightthickness=0) #make the scroll bar invisible
+        scrollbar.pack(side='right', fill='y')
+        canvas.config(yscrollcommand=scrollbar.set)
+        canvas.place(x = 190, y = 215)
+
+        # Create a frame inside the canvas to hold the content
+        inner_frame = Frame(canvas)
+        canvas.create_window((0,0), window=inner_frame, anchor='nw')
+
+        # Bind the MouseWheel event to the canvas
+        def on_mousewheel(event):
+            canvas.yview_scroll(int(-1*(event.delta/120)), 'units')
+
+        # Bind the MouseEnter and MouseLeave events of the inner frame
+        is_mouse_inside = False
+        def enable_scroll(event):
+            global is_mouse_inside
+            is_mouse_inside = True
+            canvas.bind_all('<MouseWheel>', on_mousewheel)
+        def disable_scroll(event):
+            global is_mouse_inside
+            is_mouse_inside = False
+            canvas.unbind_all('<MouseWheel>')
+
+        inner_frame.bind('<Enter>', enable_scroll)
+        inner_frame.bind('<Leave>', disable_scroll)
+
+        # Check if the mouse is inside the inner frame when scrolling
+        def check_scroll_region(event):
+            if is_mouse_inside:
+                canvas.yview_scroll(int(-1*(event.delta/120)), 'units')
+
+        # Bind the MouseWheel event to the canvas and the inner frame
+        canvas.bind('<MouseWheel>', check_scroll_region)
+        
+        # Person who chat with you 
+        try:
+            matched_lists = show_matched(self.__user_id)[0]
+            matched_list = matched_lists[0].split(" ")
+            
+            for i in range(len(matched_list)):
+                # Get information
+                name = show_name(matched_list[i])[0]
+                avatar = Image.open(BytesIO(show_photo(matched_list[i])[0]))
+                
+                
+                # Resize the avatar image as needed
+                def resize_img(width, height):
+                    wid = floor(width/100)
+                    hei = floor(height/100)
+                    ration = min(wid, hei)
+                    return ration
+                
+                def resize_img2(width, height):
+                    wid = ceil(100/width)
+                    hei = ceil(100/height)
+                    ration = min(wid, hei)
+                    return ration
+                
+                wi, he = avatar.size 
+                if wi < 100 or he < 100:
+                    ration = resize_img2(wi, he)
+                    new_wid = int(wi*ration)
+                    new_hei = int(he*ration)
+                else:
+                    ration = resize_img(wi, he)
+                    new_wid = int(wi/ration)
+                    new_hei = int(he/ration)
+                img_resized = avatar.resize((new_wid, new_hei))
+                left = (new_wid - 100)/2
+                right = new_wid - (new_wid - 100)/2
+                upper = (new_hei - 100)/2
+                lower = new_hei - (new_hei - 100)/2
+                img_resized = img_resized.crop([left, upper, right, lower])
+                avatar_photo = ImageTk.PhotoImage(img_resized) 
+                
+                
+                # Create user button
+                style = ttk.Style()
+                style.configure('Modern.TButton', foreground= '#4E4E4E', maxwidth= 370, maxheight= 114, font=(self.__font, 19, "bold"), anchor= "w")
+                style.map('Modern.TButton',
+                        foreground=[('active', '#FBA2D0'), ('focus', '#FBA2D0')],
+                        background=[('active', '#FFA270'), ('focus', '#FFA270')]
+                )
+
+                who_chat = ttk.Button(inner_frame, text= name, image=avatar_photo, compound= "left")
+                who_chat.grid(row=i, column=0, sticky="nsew")
+                who_chat.config(style='Modern.TButton')
+                who_chat.image = avatar_photo
+                                       
+        except IndexError:
+            pass
+        
+        
+        if len(matched_list) > 7:
+            # Update the geometry of the inner frame and canvas
+            inner_frame.update_idletasks()
+            canvas.config(scrollregion=canvas.bbox('all'))
+        else:
+            # Calculate the height of the inner frame
+            inner_frame.update_idletasks()
+            frame_height = inner_frame.winfo_height()
+
+            # Set the height of the canvas
+            canvas.config(scrollregion=canvas.bbox('all'), height=frame_height)
+                    
         #--------------------------------------------------------------------------------------------------------------------------------------------------
         # Face user chat
-        face_user_chat = Label(self.__root, image=face_user_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        face_user_chat.place(x = 640, y = 225)   
-
-        # Person who chat with you 
-        
-        matched_lists = show_matched(self.__user_id)[0]
-        matched_list = matched_lists[0].split(" ")
-        posy = 300
-        for i in matched_list:
-            name = show_name(i)
-            
-            who_chat = Button(self.__root, font=(self.__font, 19, "bold"), image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-            who_chat.place(x = 150, y = posy)  
-            who_chat.config(text= name, compound= "center", fg="#4E4E4E")
-            
-            posy += 150
-        
-
-        # who_chat_2 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        # who_chat_2.place(x = 150, y = 450) 
-    
-
-        # who_chat_3 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        # who_chat_3.place(x = 150, y = 600)   
-
-
-        # who_chat_4 = Button(self.__root, image=who_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        # who_chat_4.place(x = 150, y = 750)    
+        # face_user_chat = Label(self.__root, image=face_user_chat_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+        # face_user_chat.place(x = 640, y = 225)    
         
         # OPEN IMAGE -- ICON -- SEND MESSAGE Button
-        # open_image= Button(self.__root, image=open_image_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
-        # open_image.place(x = 1450, y = 930)    
+        open_image= Button(self.__root, image=open_image_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
+        open_image.place(x = 1450, y = 930)    
 
-        # open_icon = Button(self.__root, image=open_icon_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)  
-        # open_icon.place(x = 1570, y = 930)    
+        open_icon = Button(self.__root, image=open_icon_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)  
+        open_icon.place(x = 1570, y = 930)    
 
         send_message = Button(self.__root, image=send_message_img, bg="#FFFFFF", borderwidth=0, highlightthickness=0)
         send_message.place(x = 1680, y = 920)    

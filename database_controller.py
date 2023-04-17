@@ -77,6 +77,23 @@ def show_info(i):
         cursor.close()
         conn.close()
         
+def show_new_added_dob():
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT User_dob FROM User_information WHERE id = (SELECT MAX(id) FROM User_information);")
+        rows = cursor.fetchall()
+ 
+        return(rows[0][0])
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()       
+
 def show_name(i):
     try:
         conn = connect()
@@ -391,28 +408,7 @@ def insert_interest(in1, in2, in3, in4, in5):
         # close connection
         cursor.close()
         conn.close()
-        
-# def insert_interests_old(Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet):
-#     query = "INSERT INTO User_basics(Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet) " \
-#             "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-#     args = (Interests_sports, Interests_creativity, Interests_goingout, Interests_stayingin, Interests_film_tv, Interests_reading, Interests_music, Interests_food, Interests_travelling, Interests_pet)
- 
-#     try:
- 
-#         conn = connect()
- 
-#         cursor = conn.cursor()
-#         cursor.execute(query, args)
-  
-#         conn.commit()
-#     except Error as error:
-#         print(error)
- 
-#     finally:
-#         # close connection
-#         cursor.close()
-#         conn.close()
-      
+              
         
 #insert Image
 def convertToBinaryData(filename):
@@ -452,6 +448,90 @@ def show_photo(id):
         rows = cursor.fetchall()
  
         return(rows[0])
+ 
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+        
+#----------------------------------------------------------------------------------------------------
+#auto delete invalid user in database
+def get_invalid_id():
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT MAX(User_id) FROM User_account")
+        rows1 = cursor.fetchall()
+        
+        cursor.execute("SELECT MAX(id) FROM User_information")
+        rows2 = cursor.fetchall()
+        
+        cursor.execute("SELECT MAX(id) FROM User_basics")
+        rows3 = cursor.fetchall()
+        
+        cursor.execute("SELECT MAX(id) FROM User_interests")
+        rows4 = cursor.fetchall()
+        
+        cursor.execute("SELECT MAX(id) FROM User_photo")
+        rows5 = cursor.fetchall()
+
+        return min(rows1[0][0], rows2[0][0], rows3[0][0], rows4[0][0], rows5[0][0]) + 1
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+
+def delete_invalid_id():       
+    invalid_id = get_invalid_id()  
+    
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        #delete invalid user
+        cursor.execute("DELETE FROM User_account WHERE User_id = %s", (invalid_id,))
+        cursor.execute("DELETE FROM User_information WHERE id = %s", (invalid_id,))
+        cursor.execute("DELETE FROM User_basics WHERE id = %s", (invalid_id,))
+        cursor.execute("DELETE FROM User_interests WHERE id = %s", (invalid_id,)) 
+        cursor.execute("DELETE FROM User_photo WHERE id = %s", (invalid_id,))
+        cursor.execute("DELETE FROM User_match WHERE id = %s", (invalid_id,))
+        
+        #reset the id auto-increment
+        cursor.execute("ALTER TABLE User_account AUTO_INCREMENT = %s", (invalid_id - 1,))
+        cursor.execute("ALTER TABLE User_information AUTO_INCREMENT = %s", (invalid_id - 1,))
+        cursor.execute("ALTER TABLE User_basics AUTO_INCREMENT = %s", (invalid_id - 1,))
+        cursor.execute("ALTER TABLE User_interests AUTO_INCREMENT = %s", (invalid_id - 1,))
+        cursor.execute("ALTER TABLE User_photo AUTO_INCREMENT = %s", (invalid_id - 1,))
+        cursor.execute("ALTER TABLE User_match AUTO_INCREMENT = %s", (invalid_id - 1,))
+ 
+        conn.commit()
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
+        
+        
+#------------------------------------------------------------------------------------------------------
+#ADMIN MODE
+
+#get password with username
+def get_password_w_username(username):
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT Account_password FROM User_account WHERE Account_username = %s", (username,))
+        rows = cursor.fetchall()
+        
+        return(rows[0][0])
  
     except Error as e:
         print(e)

@@ -12,7 +12,7 @@ class Sign_up:
         self.__root.geometry('900x500')
         self.__root.resizable(width=False, height=False)
         
-        
+
     def continue_click(self, username, password, confirm_password):
         un = username.get()
         pw = password.get()
@@ -154,6 +154,7 @@ class Sign_up:
         next.Basic_Infor()
 
 
+    #Create user informations
     def Infor_screen(self):
         background_img = tk.PhotoImage(file = "GUI/sign_up_img/profile_information_img/new_bg.png")
         continue_img = tk.PhotoImage(file="GUI/sign_up_img/profile_information_img/continue.png")
