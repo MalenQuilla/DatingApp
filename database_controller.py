@@ -6,7 +6,7 @@ def connect():
         'host': 'localhost',
         'database': 'DatingApp',
         'user': 'root',
-        'password': 'pass123'
+        'password': 'Anhtung777'
     }
  
     conn = None
