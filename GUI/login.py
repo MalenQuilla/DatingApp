@@ -1,6 +1,6 @@
 import tkinter as tk
 from functools import partial
-from database_controller import show_account, get_password_w_username
+from database_controller import show_account, get_password_w_username, delete_user
 from GUI import sign_up
 from GUI import secure
 
@@ -90,9 +90,36 @@ class Login:
                         show_pass = tk.Label(self.__root, text= " "*1000 + password + " "*1000, font= ("Arial", 20))
                         show_pass.place(relx=0.5, rely=0.30, anchor='center')
                         
+
+                    def ban_click():
+
+                        new_label.destroy()
+                        username.destroy()
+                        new_confirm.destroy()
+                        ban_button.destroy()
+
+                        new_layer = tk.Label(self.__root, text= " "*2000, font= ("Arial", 20))
+                        new_layer.place(relx=0.5, rely=0.30, anchor='center')
+
+                        def ban_click():
+                            delete_id = delete_id_label.get()
+                            delete_user(delete_id)
+
+                            success = tk.Label(self.__root, text= "Delete successfull", font= ("Arial", 20))
+                            success.place(relx= 0.5, rely= 0.3, anchor= "center")
+
+                        ban_label = tk.Label(self.__root, text= "Enter User ID: ", font= ("Arial", 20))
+                        ban_label.place(relx= 0.5, rely= 0.4, anchor="center")
+                        delete_id_label = tk.Entry(self.__root, font= ("Arial", 20))
+                        delete_id_label.place(relx=0.5, rely=0.5, anchor='center')
+                        ban_confirm = tk.Button(self.__root, text = "CONFIRM", font= ("Arial", 20), command= partial(ban_click))
+                        ban_confirm.place(relx= 0.5, rely= 0.6, anchor='center')
                     
                     new_confirm = tk.Button(self.__root, text = "CONFIRM", font= ("Arial", 20), command= partial(confirm2_click))
                     new_confirm.place(relx=0.5, rely=0.60, anchor='center')
+
+                    ban_button = tk.Button(self.__root, text= "Delete Account", font= ("Arial", 20), command= partial(ban_click))
+                    ban_button.place(relx= 0.5, rely= 0.7, anchor= "center")
               
                     
             confirm = tk.Button(self.__root, text = "CONFIRM", font= ("Arial", 20), command= partial(confirm_click))

@@ -540,3 +540,40 @@ def get_password_w_username(username):
         # close connection
         cursor.close()
         conn.close()
+
+def delete_user(invalid_id):        
+    
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT MAX(User_id) FROM User_account")
+        row = cursor.fetchall()
+        max_id = row[0][0]
+
+
+        #delete invalid user
+        cursor.execute("DELETE FROM User_account WHERE User_id = %s", (invalid_id,))
+        cursor.execute("DELETE FROM User_information WHERE id = %s", (invalid_id,))
+        cursor.execute("DELETE FROM User_basics WHERE id = %s", (invalid_id,))
+        cursor.execute("DELETE FROM User_interests WHERE id = %s", (invalid_id,)) 
+        cursor.execute("DELETE FROM User_photo WHERE id = %s", (invalid_id,))
+        cursor.execute("DELETE FROM User_match WHERE id = %s", (invalid_id,))
+        
+        if invalid_id == max_id:
+            #reset the id auto-increment
+            cursor.execute("ALTER TABLE User_account AUTO_INCREMENT = %s", (invalid_id - 1,))
+            cursor.execute("ALTER TABLE User_information AUTO_INCREMENT = %s", (invalid_id - 1,))
+            cursor.execute("ALTER TABLE User_basics AUTO_INCREMENT = %s", (invalid_id - 1,))
+            cursor.execute("ALTER TABLE User_interests AUTO_INCREMENT = %s", (invalid_id - 1,))
+            cursor.execute("ALTER TABLE User_photo AUTO_INCREMENT = %s", (invalid_id - 1,))
+            cursor.execute("ALTER TABLE User_match AUTO_INCREMENT = %s", (invalid_id - 1,))
+ 
+        conn.commit()
+    except Error as e:
+        print(e)
+ 
+    finally:
+        # close connection
+        cursor.close()
+        conn.close()
