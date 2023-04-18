@@ -103,10 +103,11 @@ class Login:
 
                         def ban_click():
                             delete_id = delete_id_label.get()
-                            delete_user(delete_id)
+                            if tk.messagebox.askokcancel("DELETE USER", "Are you sure to delete user with id " + delete_id + "?"):
+                                delete_user(delete_id)
 
-                            success = tk.Label(self.__root, text= "Delete successfull", font= ("Arial", 20))
-                            success.place(relx= 0.5, rely= 0.3, anchor= "center")
+                                success = tk.Label(self.__root, text= "Delete successfull", font= ("Arial", 20))
+                                success.place(relx= 0.5, rely= 0.3, anchor= "center")
 
                         ban_label = tk.Label(self.__root, text= "Enter User ID: ", font= ("Arial", 20))
                         ban_label.place(relx= 0.5, rely= 0.4, anchor="center")
